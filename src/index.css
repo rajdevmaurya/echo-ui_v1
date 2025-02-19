@@ -1,0 +1,372 @@
+/* Global styles and variables */
+:root {
+  --primary-color: #00372c;
+  --primary-dark: #022a22;
+  --secondary-color: #022a22;
+
+  --text-color: #696969;
+  --secondary-text-bg: rgb(255 255 255 / 10%);
+  --secondary-text-color: #fff;
+  --gray-color: #f9f9f9;
+  --dark-color: #333;
+  --label-color: #555;
+  --border-color: #ddd;
+
+  --white: #fff;
+  --black: #000;
+  --red: #c62828;
+
+  --card-padding: 1.25rem;
+  --box-shadow: 0 5px 5px 0 rgb(0 0 0 / 12%);
+  --form-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  background-color: var(--gray-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+/* typography */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 24px;
+  color: var(--text-color);
+}
+
+h3 {
+  line-height: 1.5;
+}
+
+p {
+  /* font-size: 14px; */
+  color: var(--text-color);
+}
+
+a {
+  outline: none;
+  box-shadow: none;
+}
+
+.link,
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.error-message {
+  color: var(--red);
+  font-size: 14px;
+  text-align: center;
+}
+
+button {
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: none;
+}
+
+.container {
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.container .row {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+main {
+  padding-top: 64px;
+  padding-bottom: 80px;
+}
+
+main:has(> .no-top-gap) {
+  padding-top: 0;
+}
+
+main:has(> .no-bottom-gap) {
+  padding-bottom: 0;
+}
+
+/* screen reader */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* dropdown */
+.dropdown-content {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: var(--white);
+  color: var(--text-color);
+  border-radius: 0.25rem;
+  box-shadow: var(--box-shadow);
+}
+
+.dropdown-content li:not(:empty) {
+  cursor: pointer;
+  min-height: 1px;
+  padding: 0;
+  background-color: transparent;
+}
+
+.dropdown-content li:not(:first-child) {
+  border-top: 1px solid var(--border-color);
+}
+
+.dropdown-content li a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  padding: 1.25rem 1rem;
+  font-size: 1rem;
+}
+
+.dropdown-content li a:hover,
+.dropdown-content li a.active {
+  background: rgb(0 0 0 / 5%);
+}
+
+.dropdown-content li a i {
+  margin-right: 0.7rem;
+}
+
+@media screen and (max-width: 768px) {
+  .dropdown-content {
+    position: relative !important;
+    display: block;
+    visibility: visible;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    height: unset !important;
+    transform: none !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    padding-left: 1.5rem !important;
+  }
+
+  li.dropdown-expanded .dropdown-content {
+    max-height: max-content;
+  }
+}
+
+/* primary nav */
+.primary-menu a.active,
+nav .primary-menu a:hover,
+.primary-menu:hover li:hover a,
+.primary-menu:hover li:hover a.active {
+  background: var(--secondary-text-bg);
+}
+
+.primary-menu:hover li:not(:hover) a,
+.primary-menu:hover li:not(:hover) a.active {
+  background: transparent;
+}
+
+.primary-menu li li a.active,
+nav .primary-menu li li a:hover,
+.primary-menu:hover li:hover li a.active,
+.primary-menu:hover li:hover li a:hover {
+  background: rgb(0 0 0 / 5%);
+}
+
+.primary-menu .dropdown-trigger i.right {
+  margin-left: 0.5rem;
+}
+
+.sidenav li.greeting,
+.sidenav li > a {
+  padding: 0 1rem;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.sidenav li > a > i,
+.sidenav li > a > i.material-icons {
+  margin-right: 1rem;
+}
+
+/* cards */
+.card {
+  box-shadow: var(--box-shadow);
+  margin-top: 0;
+}
+
+.card .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.card-panel {
+  padding: 15px;
+}
+
+.common-img-header {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 24px;
+}
+
+.common-img-header img {
+  max-height: 100px;
+}
+
+/* truncate */
+.truncate {
+  white-space: break-spaces;
+  display: block;
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@supports not (-webkit-line-clamp: 1) {
+  .truncate {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+/* form */
+input:not(.browser-default),
+select:not(.browser-default),
+textarea:not(.browser-default),
+input:not(.browser-default):focus,
+select:not(.browser-default):focus,
+textarea:not(.browser-default):focus,
+input.invalid:not(.browser-default),
+select.invalid:not(.browser-default),
+textarea.invalid:not(.browser-default) {
+  box-shadow: none !important;
+}
+
+input:not(.browser-default):focus:focus:not([readonly]),
+select:not(.browser-default):focus:focus:not([readonly]),
+textarea:not(.browser-default):focus:focus:not([readonly]) {
+  border: 1px solid var(--primary-color) !important;
+}
+
+input.validate.invalid:not(.browser-default),
+select.validate.invalid:not(.browser-default),
+textarea.validate.invalid:not(.browser-default) {
+  border: 1px solid var(--red) !important;
+}
+
+.helper-text:after {
+  font-size: 0.9rem !important;
+}
+
+/* ---------------------------- */
+/* .tabs {
+  position: sticky;
+  top: 167px;
+  z-index: 9;
+} */
+/* .tabs::before {
+  content: "";
+  background: var(--border-color);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  height: 2px;
+} */
+
+.tabs .tab a {
+  color: var(--black);
+} /*Black color to the text*/
+
+.tabs .tab a:hover {
+  background-color: transparent;
+  color: var(--black);
+} /*Text color on hover*/
+
+.tabs .tab a.active {
+  background-color: transparent;
+  color: var(--black);
+} /*Background and text color when a tab is active*/
+
+.tab-content {
+  padding: 1.5rem;
+}
+
+.tab-content .container {
+  width: 100%;
+  padding: 0;
+}
+
+.tab-content .collection {
+  margin-top: 0;
+}
+
+.tabs .indicator {
+  background-color: var(--primary-color);
+} /*Color of underline*/
+
+.tabs .tab a:focus,
+.tabs .tab a:focus.active {
+  background-color: transparent;
+}
+
+/* modal */
+.modal {
+  border-radius: 0.25rem;
+}
+
+.modal .modal-content,
+.modal .modal-footer {
+  padding: 1rem;
+  height: 100%;
+}
+
+/* media queries */
+@media only screen and (max-width: 991px) {
+  .row .col.s3 {
+    width: 50%;
+    margin-bottom: 3rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .row .col.s3 {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}

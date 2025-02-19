@@ -1,0 +1,89 @@
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.search-form .search-input {
+  width: 100%;
+  padding-left: 1rem;
+}
+
+.search-form,
+.search-form .input-group {
+  max-width: 300px;
+  width: 100%;
+}
+
+.search-form .input-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.search-form .input-group .search-input {
+  width: 100%;
+  margin: 0;
+  display: block;
+  padding-left: 1rem;
+  transition: all 0.3s ease-in-out;
+  color: var(--white);
+}
+
+.search-form .input-group .search-input,
+.search-form .input-group .search-input:focus {
+  box-shadow: none !important;
+  border-bottom: none !important;
+}
+
+.search-form .input-group label {
+  position: static;
+  transform: none;
+  background-color: var(--secondary-color);
+  padding: 1rem;
+}
+
+.search-form .input-group label i {
+  color: var(--white);
+  height: 100%;
+  line-height: 1;
+}
+
+.search-form .input-group input + .label-icon {
+  left: auto;
+  right: 1rem;
+  line-height: inherit;
+  top: auto;
+}
+
+/* .search-form .input-group:has(input:focus),
+.search-form .input-group:has(input:not([value=""])) {
+  background-color: var(--white);
+} */
+
+.search-form button {
+  /* background-color: var(--secondary-color); */
+  background-color: transparent;
+  color: var(--white);
+  border: none;
+  padding: 0 1rem;
+  border-radius: 0;
+}
+
+.search-form .input-group .search-input,
+.search-form button,
+.search-form button i {
+  height: auto;
+  line-height: 48px;
+}
+
+.search-form .input-group .search-input:focus:focus:not([readonly]) {
+  border: none !important;
+}
+
+@media only screen and (min-width: 768px) {
+  .search-form,
+  .search-form .input-group {
+    max-width: 400px;
+  }
+}

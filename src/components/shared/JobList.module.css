@@ -1,0 +1,18 @@
+.cards-wrapper {
+  display: grid;
+  gap: calc(var(--card-padding) * 1.25);
+}
+
+.featured-cards {
+  margin-bottom: 0;
+}
+
+.featured-cards h3 {
+  font-size: 1.25rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .featured-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

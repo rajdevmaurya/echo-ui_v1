@@ -1,0 +1,48 @@
+.top-header {
+  background: var(--dark-color);
+  color: var(--white);
+  padding: 10px 20px;
+  font-size: 14px;
+  position: relative;
+}
+
+.top-header ul,
+.top-header ul li a {
+  display: flex;
+  align-items: center;
+  color: inherit;
+}
+
+.top-header ul {
+  gap: 2rem;
+}
+
+.top-header ul li a {
+  gap: 0.25rem;
+}
+
+.top-header ul li i {
+  display: block;
+  font-size: 1rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 1vw;
+}
+
+.close-btn,
+.close-btn:hover,
+.close-btn:active {
+  background-color: transparent;
+}
+
+.close-btn:hover {
+  opacity: 0.8;
+}

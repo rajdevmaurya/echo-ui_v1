@@ -1,0 +1,27 @@
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: var(--label-color);
+}
+
+.input-group input:not(.browser-default),
+.input-group textarea:not(.browser-default) {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-sizing: border-box;
+  height: 100%;
+  outline: none;
+}
+
+.input-group textarea:not(.browser-default){
+  resize: vertical;
+  min-height: 100px;
+}

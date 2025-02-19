@@ -1,0 +1,37 @@
+.btn {
+  padding: 15px 32px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--white);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  letter-spacing: 0.1px;
+  display: inline-block;
+}
+
+.btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.btn:focus {
+  background-color: var(--primary-color);
+}
+
+.btn-text,
+.btn-text:hover,
+.btn-text:focus {
+  background-color: unset;
+  color: var(--secondary-color);
+}
+
+.btn-icon-wrapper {
+  padding: 10px;
+}
+
+.btn-icon-wrapper,
+.btn-icon-wrapper i {
+  line-height: 1;
+}

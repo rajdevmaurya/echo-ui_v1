@@ -1,0 +1,8 @@
+.card {
+  max-width: 100%;
+  overflow-x: hidden;
+  transition: box-shadow 0.25s;
+  border-radius: 0.25rem;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
+}
