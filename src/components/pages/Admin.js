@@ -49,26 +49,9 @@ const Admin = () => {
     <div className="container no-top-gap">
       <div className="card">
         <div className="row">
-          <ul className="tabs">
-            <li className="tab col s4"><a className="active" href="#form">Jobs</a></li>
-            <li className="tab col s4"><a href="#service-preview">Job Request</a></li>
-            <li className="tab col s4"><a href="#order-preview">Order Request</a></li>
-          </ul>
-
-          <div className="tab-content">
             <div id="form">
               <AdminForm />
             </div>
-
-            <div id="service-preview">
-              {/* Similar Order Form */}
-              <Customer />
-            </div>
-
-            <div id="order-preview">
-              {/* Similar Order Form */}
-            </div>
-          </div>
         </div>
       </div>
     </div>

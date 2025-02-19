@@ -106,7 +106,7 @@ const Header = () => {
   const navigationLinks = [
     { path: "/", label: "Home", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
     {
-      path: "/customer", label: "Product & Services",
+      path: "/customer", label: "Sales & Services",
       roles: ["GUEST", "USER", "STAFF", "ADMIN"],
      // dropdown: [
       //  { path: "/customer", label: "Customer" },
@@ -115,18 +115,20 @@ const Header = () => {
     },
     { path: "/staff", label: "Partners", roles: ["STAFF", "ADMIN"],
       dropdown: [
-         { path: "/customer", label: "My Services" },
-         { path: "/", label: "My Closed Request" },
+         { path: "/staff", label: "Update Details" },
+         { path: "/", label: "My Pending Request" },
+         { path: "/", label: "Closed Request" },
         ]
      },
     {
       path: "/admin", label: "Admin Master",
       roles: ["ADMIN"],
       dropdown: [
-        { path: "/admin", label: "Add P&S" },
+        { path: "/admin", label: "Add/Update Details" },
         { path: "/", label: "All Service Request" },
       ]
     },
+    { path: "/Test", label: "Support", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
   ];
 
   const generateNavList = (menuType) => {
