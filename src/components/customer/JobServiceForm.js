@@ -76,7 +76,7 @@ const JobServiceForm = () => {
 
   const redirectJobList = () => {
     navigate('/customer');
-    // M.toast({ html: 'Service request has been created successful!', classes: 'green' });
+     M.toast({ html: 'Service request has been created successful!', classes: 'green' });
   };
 
   const saveJob = async (e) => {
