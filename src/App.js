@@ -37,28 +37,30 @@ function App() {
   return (
     <AuthProvider>
       <JobProvider>
-        <Header />
-        <main>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path="*" element={<Navigate to="/" />} />
+        <section>
+          <Header />
+          <main>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path="*" element={<Navigate to="/" />} />
 
-            <Route path='/login' element={<Login />} />
-            <Route path='/signup' element={<Signup />} />
-            <Route path='/customer' element={<Customer />} />
-            <Route path='/customer/jobs/:job_id' element={<JobServiceForm />} />
-            <Route path='/jobs/:job_id' element={<JobDetails />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/signup' element={<Signup />} />
+              <Route path='/customer' element={<Customer />} />
+              <Route path='/customer/jobs/:job_id' element={<JobServiceForm />} />
+              <Route path='/jobs/:job_id' element={<JobDetails />} />
 
-            <Route path='/staff' element={<PrivateRoute><Staff /></PrivateRoute>} />
-            <Route path='/staff/jobs' element={<PrivateRoute><JobForm /></PrivateRoute>} />
-            <Route path='/staff/jobs/:job_id' element={<PrivateRoute><JobForm /></PrivateRoute>} />
+              <Route path='/staff' element={<PrivateRoute><Staff /></PrivateRoute>} />
+              <Route path='/staff/jobs' element={<PrivateRoute><JobForm /></PrivateRoute>} />
+              <Route path='/staff/jobs/:job_id' element={<PrivateRoute><JobForm /></PrivateRoute>} />
 
-            <Route path='/admin' element={<PrivateRoute><Admin /></PrivateRoute>} />
-            <Route path='/admin/jobs' element={<PrivateRoute><JobAdminForm /></PrivateRoute>} />
-            <Route path='/admin/jobs/:job_id' element={<PrivateRoute><JobAdminForm /></PrivateRoute>} />
+              <Route path='/admin' element={<PrivateRoute><Admin /></PrivateRoute>} />
+              <Route path='/admin/jobs' element={<PrivateRoute><JobAdminForm /></PrivateRoute>} />
+              <Route path='/admin/jobs/:job_id' element={<PrivateRoute><JobAdminForm /></PrivateRoute>} />
 
-          </Routes>
-        </main>
+            </Routes>
+          </main>
+        </section>
         <Footer />
       </JobProvider>
     </AuthProvider>

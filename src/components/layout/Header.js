@@ -30,12 +30,12 @@ const sidebarDropdownOptions = {
   inDuration: 300,
   outDuration: 200,
   onOpenStart: (el) => {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 992) {
       el.closest("li").classList.add("dropdown-expanded");
     }
   },
   onCloseEnd: (el) => {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 992) {
       el.closest("li").classList.remove("dropdown-expanded");
     }
   },
@@ -104,7 +104,56 @@ const Header = () => {
   const logInOutText = authenticated ? 'Logout' : 'Login';
 
   const navigationLinks = [
-    { path: "/", label: "Home", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
+   // { path: "/", label: "Home", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
+   // {
+    //  path: "/customer", label: "Sales & Services",
+    //  roles: ["GUEST", "USER", "STAFF", "ADMIN"],
+    //},
+    //{
+    //  path: "/staff", label: "Partners", roles: ["STAFF", "ADMIN"],
+    //  dropdown: [
+      //  { path: "/staff", label: "Update Details" },
+    //    { path: "/", label: "My Pending Request" },
+        //{ path: "/", label: "Closed Request" },
+      //]
+    //},
+    {
+      path: "/", label: "Medical Devices",
+      roles: ["GUEST", "USER", "STAFF", "ADMIN"],
+      dropdown: [
+        { path: "/le", label: "Lab Equipments" },
+        { path: "/de", label: "Dental Equipments" },
+        { path: "/xray", label: "X-Ray" },
+        { path: "/usm", label: "Ultrasound Machines" },
+      ]
+    },
+    {
+      path: "/tools", label: "Tools",
+      roles: ["GUEST", "USER", "STAFF", "ADMIN"],
+      dropdown: [
+        { path: "/opt", label: "Orthopedic Power Tools" },
+        { path: "/sis", label: "Surgical Instrument Sets" },
+        { path: "/sm", label: "Sports Medicine" },
+      ]
+    }, 
+    { path: "/tm", label: " Trolley & Mounting", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
+    { path: "/", label: "Medicines", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
+    {
+      path: "/staff", label: "Partners", roles: ["STAFF", "ADMIN"],
+      dropdown: [
+        { path: "/staff", label: "Update Details" },
+        { path: "/", label: "My Pending Request" },
+        { path: "/", label: "Closed Request" },
+      ]
+    },
+    {
+      path: "/admin", label: "Admin",
+      roles: ["ADMIN"],
+      dropdown: [
+        { path: "/admin", label: "Add/Update Details" },
+        { path: "/", label: "All Service Request" },
+      ]
+    },
     {
       path: "/customer", label: "Sales & Services",
       roles: ["GUEST", "USER", "STAFF", "ADMIN"],
@@ -113,22 +162,6 @@ const Header = () => {
      //   { path: "/", label: "More Customers" },
      // ]
     },
-    { path: "/staff", label: "Partners", roles: ["STAFF", "ADMIN"],
-      dropdown: [
-         { path: "/staff", label: "Update Details" },
-         { path: "/", label: "My Pending Request" },
-         { path: "/", label: "Closed Request" },
-        ]
-     },
-    {
-      path: "/admin", label: "Admin Master",
-      roles: ["ADMIN"],
-      dropdown: [
-        { path: "/admin", label: "Add/Update Details" },
-        { path: "/", label: "All Service Request" },
-      ]
-    },
-    { path: "/Test", label: "Support", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
   ];
 
   const generateNavList = (menuType) => {
@@ -201,7 +234,13 @@ const Header = () => {
       </header>
 
       {/* Mobile Sidenav */}
-      <ul className="sidenav" id="mobile-menu">
+      <ul className={`${classes.sidenav} sidenav`} id="mobile-menu">
+        <li>
+          <Link to="/" className={`${classes['brand-logo']} brand-logo`} style={{ backgroundColor: 'var(--primary-color)' }}>
+            <img src={SiteLogo} alt='Echo Health care' />
+            <span className="sr-only">Echo Health care</span>
+          </Link>
+        </li>
         <li className="greeting">Hi {username}</li>
         {generateNavList("mobile")}
         <li>{loginLogoutLink}</li>
