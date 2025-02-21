@@ -128,6 +128,15 @@ const Header = () => {
       ]
     },
     {
+      path: "/tools", label: "Pediatric",
+      roles: ["GUEST", "USER", "STAFF", "ADMIN"],
+      dropdown: [
+        { path: "/opt", label: "Orthopedic Power Tools" },
+        { path: "/sis", label: "Surgical Instrument Sets" },
+        { path: "/sm", label: "Sports Medicine" },
+      ]
+    }, 
+    {
       path: "/tools", label: "Tools",
       roles: ["GUEST", "USER", "STAFF", "ADMIN"],
       dropdown: [
