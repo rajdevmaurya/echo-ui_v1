@@ -118,7 +118,7 @@ const Header = () => {
       //]
     //},
     {
-      path: "/", label: "Medical Devices",
+      path: "/customer", label: "Medical Devices",
       roles: ["GUEST", "USER", "STAFF", "ADMIN"],
       dropdown: [
         { path: "/le", label: "Lab Equipments" },
@@ -128,7 +128,7 @@ const Header = () => {
       ]
     },
     {
-      path: "/tools", label: "Pediatric",
+      path: "/tools", label: "Pediatrics",
       roles: ["GUEST", "USER", "STAFF", "ADMIN"],
       dropdown: [
         { path: "/opt", label: "Orthopedic Power Tools" },
@@ -136,6 +136,16 @@ const Header = () => {
         { path: "/sm", label: "Sports Medicine" },
       ]
     }, 
+    {
+      path: "/tools", label: "Orthopedics",
+      roles: ["GUEST", "USER", "STAFF", "ADMIN"],
+      dropdown: [
+        { path: "/opt", label: "Orthopedic Power Tools" },
+        { path: "/sis", label: "Surgical Instrument Sets" },
+        { path: "/sm", label: "Sports Medicine" },
+      ]
+    }, 
+    
     {
       path: "/tools", label: "Tools",
       roles: ["GUEST", "USER", "STAFF", "ADMIN"],

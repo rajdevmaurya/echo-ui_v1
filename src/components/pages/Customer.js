@@ -16,7 +16,7 @@ class Customer extends Component {
     const { jobs, searchJob, pagination = {}, searchText } = this.context;
 
     return (
-      <div className="container">
+      <div className="container no-top-gap">
         <JobList jobs={jobs}
           hideDescription={false}
           pagination={pagination}
