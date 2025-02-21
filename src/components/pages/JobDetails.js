@@ -66,7 +66,7 @@ const JobDetails = () => {
           <h1 style={{ marginTop: '0' }}>{job.title}</h1>
           <div>{job.description}</div>
           <div className="right-align" style={{ marginTop: '2rem' }}>
-            <Button href={`/customer/jobs/${job.id}`} varient='link'>Service Request</Button>
+            <Button href={`/collection/jobs/${job.id}`} varient='link'>Service Request</Button>
           </div>
         </>
       )}

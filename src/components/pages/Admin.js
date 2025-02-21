@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import M from 'materialize-css';
 import { useNavigate, useParams } from 'react-router-dom';
-import Customer from './Customer';
 import { JobContext } from '../context/JobContext';
 import AdminForm from '../admin/AdminForm';
 

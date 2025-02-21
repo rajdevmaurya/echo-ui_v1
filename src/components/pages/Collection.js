@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-//import { withOktaAuth } from '@okta/okta-react'
 import M from 'materialize-css';
 import { JobContext } from '../context/JobContext';
 import JobList from '../shared/JobList';
 
-class Customer extends Component {
+class MyCollection extends Component {
   static contextType = JobContext;
 
   componentDidMount() {
@@ -27,4 +26,4 @@ class Customer extends Component {
   }
 }
 
-export default Customer;//withOktaAuth(Customer)
+export default MyCollection

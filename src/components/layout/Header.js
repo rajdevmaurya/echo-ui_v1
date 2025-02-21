@@ -104,21 +104,8 @@ const Header = () => {
   const logInOutText = authenticated ? 'Logout' : 'Login';
 
   const navigationLinks = [
-   // { path: "/", label: "Home", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
-   // {
-    //  path: "/customer", label: "Sales & Services",
-    //  roles: ["GUEST", "USER", "STAFF", "ADMIN"],
-    //},
-    //{
-    //  path: "/staff", label: "Partners", roles: ["STAFF", "ADMIN"],
-    //  dropdown: [
-      //  { path: "/staff", label: "Update Details" },
-    //    { path: "/", label: "My Pending Request" },
-        //{ path: "/", label: "Closed Request" },
-      //]
-    //},
     {
-      path: "/customer", label: "Medical Devices",
+      path: "/collection", label: "Medical Devices",
       roles: ["GUEST", "USER", "STAFF", "ADMIN"],
       dropdown: [
         { path: "/le", label: "Lab Equipments" },
@@ -128,14 +115,14 @@ const Header = () => {
       ]
     },
     {
-      path: "/tools", label: "Pediatrics",
+      path: "/collection/pediatrics", label: "Pediatrics",
       roles: ["GUEST", "USER", "STAFF", "ADMIN"],
       dropdown: [
-        { path: "/sm", label: "Sports Medicine" },
+        { path: "/nebulizer", label: "Nebulizer" },
       ]
     }, 
     {
-      path: "/tools", label: "Orthopedics",
+      path: "/collection/orthopedics", label: "Orthopedics",
       roles: ["GUEST", "USER", "STAFF", "ADMIN"],
       dropdown: [
         { path: "/opt", label: "Orthopedic Power Tools" },
@@ -145,7 +132,7 @@ const Header = () => {
     }, 
     
     {
-      path: "/tools", label: "Tools",
+      path: "/collection/tools", label: "Tools",
       roles: ["GUEST", "USER", "STAFF", "ADMIN"],
       dropdown: [
         { path: "/opt", label: "Orthopedic Power Tools" },
@@ -153,8 +140,8 @@ const Header = () => {
         { path: "/sm", label: "Sports Medicine" },
       ]
     }, 
-    { path: "/tm", label: " Trolley & Mounting", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
-    { path: "/", label: "Medicines", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
+    { path: "/collection/tms", label: " Trolley & Mounting", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
+    { path: "/collection/medicines", label: "Medicines", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
     {
       path: "/staff", label: "Partners", roles: ["STAFF", "ADMIN"],
       dropdown: [
@@ -172,12 +159,8 @@ const Header = () => {
       ]
     },
     {
-      path: "/customer", label: "Sales & Services",
+      path: "/collection", label: "Sales & Services",
       roles: ["GUEST", "USER", "STAFF", "ADMIN"],
-     // dropdown: [
-      //  { path: "/customer", label: "Customer" },
-     //   { path: "/", label: "More Customers" },
-     // ]
     },
   ];
 

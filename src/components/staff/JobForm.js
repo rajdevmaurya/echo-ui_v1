@@ -201,7 +201,7 @@ const JobServiceForm = () => {
               <a href="#home-card-preview">Home Card Preview</a>
             </li>
             <li className="tab col s4">
-              <a href="#customer-card-preview">Customer Card Preview</a>
+              <a href="#collection-card-preview">Card Preview</a>
             </li>
           </ul>
           <div className="tab-content">
@@ -211,7 +211,7 @@ const JobServiceForm = () => {
             <div id="home-card-preview">
               <JobCard job={jobData} isFeatured={true} hideDescription={true} />
             </div>
-            <div id="customer-card-preview">
+            <div id="collection-card-preview">
               <JobCard job={jobData} />
             </div>
           </div>
