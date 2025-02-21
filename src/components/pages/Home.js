@@ -30,7 +30,7 @@ class Home extends Component {
       <React.Fragment>
         <ImageScroller images={scrollerImages} />
         <section className="section">
-          <div className="container">
+        <div className="container no-top-gap">
             <JobList
               jobs={jobs}
               featured={true}

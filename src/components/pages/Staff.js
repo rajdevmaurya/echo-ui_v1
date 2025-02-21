@@ -16,8 +16,7 @@ class Staff extends Component {
     const { jobs, searchJob, deleteJob, pagination, searchText } = this.context;
 
     return (
-      <div>
-        <div className="container">
+      <div className="container no-top-gap">
           <JobList
             jobs={jobs}
             root='staff'
@@ -27,8 +26,6 @@ class Staff extends Component {
             searchText={searchText}
             searchJob={searchJob}
           />
-        </div>
-
         <div className="fixed-action-btn">
           <Link className="btn-floating btn-large" style={{ backgroundColor: 'var(--secondary-color)' }} to={'/staff/jobs'}>
             <i className="material-icons">add</i>

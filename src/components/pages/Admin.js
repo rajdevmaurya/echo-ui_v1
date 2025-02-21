@@ -48,11 +48,7 @@ const Admin = () => {
   return (
     <div className="container no-top-gap">
       <div className="card">
-        <div className="row">
-            <div id="form">
               <AdminForm />
-            </div>
-        </div>
       </div>
     </div>
   );
