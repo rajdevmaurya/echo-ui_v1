@@ -14,27 +14,27 @@ const JobDetails = () => {
   useEffect(() => {
     const fetchJob = async () => {
       // Retrieve user from localStorage and parse the stored JSON to access the access token
-      const storedUser = localStorage.getItem('user');
-      if (!storedUser) {
-        M.toast({ html: 'Please Login!', classes: 'green' });
-        navigate('/login'); // Navigate to login if no user is found
-        return;
-      }
+     // const storedUser = localStorage.getItem('user');
+      //if (!storedUser) {
+      //  M.toast({ html: 'Please Login!', classes: 'green' });
+      //  navigate('/login'); // Navigate to login if no user is found
+      //  return;
+      //}
 
-      const user = JSON.parse(storedUser);
-      const accessToken = user.accessToken; // Assuming accessToken is stored in the user object
+     // const user = JSON.parse(storedUser);
+      //const accessToken = user.accessToken; // Assuming accessToken is stored in the user object
 
-      if (!accessToken) {
-        M.toast({ html: 'Access token not found in user data', classes: 'rounded' });
-        navigate('/login'); // Navigate to login if no access token is found
-        return;
-      }
+    //  if (!accessToken) {
+    //    M.toast({ html: 'Access token not found in user data', classes: 'rounded' });
+     //   navigate('/login'); // Navigate to login if no access token is found
+     //   return;
+     // }
 
       try {
         const response = await API.get(`jobs/${job_id}`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
+         // headers: {
+         //   Authorization: `Bearer ${accessToken}`,
+         // },
         });
         setJob(response.data);
       } catch (error) {
