@@ -84,7 +84,7 @@ const JobServiceForm = () => {
     if (!validateForm()) return;
 
     const method = 'POST';
-    const url = 'http://localhost:8080/api/orders/jobRequest';
+    const url = 'http://192.168.1.6:8080/api/orders/jobRequest';
 
     const storedUser = localStorage.getItem('user');
     const accessToken = JSON.parse(storedUser).accessToken;
@@ -119,7 +119,7 @@ const JobServiceForm = () => {
 
   const mockJobIdAndCreateDate = () => {
     let mockJob = { ...job };
-    mockJob.id = 'XXXXXXXXXXXXXXXXXXXXXXXX';
+    mockJob.id = '1';
     mockJob.createDate = new Date();
     return mockJob;
   };

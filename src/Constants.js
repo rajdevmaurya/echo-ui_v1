@@ -6,7 +6,7 @@ const prod = {
 
 const dev = {
   url: {
-    API_BASE_URL: 'http://localhost:8080'
+    API_BASE_URL: 'http://192.168.1.6:8080'
   }
 }
 

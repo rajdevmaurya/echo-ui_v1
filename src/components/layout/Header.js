@@ -108,29 +108,12 @@ const Header = () => {
       path: "/collection", label: "Medical Devices",
       roles: ["GUEST", "USER", "STAFF", "ADMIN"],
       dropdown: [
-        { path: "/le", label: "Lab Equipments" },
+        { path: "/collection/le", label: "Lab Equipments" },
         { path: "/de", label: "Dental Equipments" },
         { path: "/xray", label: "X-Ray" },
         { path: "/usm", label: "Ultrasound Machines" },
       ]
-    },
-    {
-      path: "/collection/pediatrics", label: "Pediatrics",
-      roles: ["GUEST", "USER", "STAFF", "ADMIN"],
-      dropdown: [
-        { path: "/nebulizer", label: "Nebulizer" },
-      ]
-    }, 
-    {
-      path: "/collection/orthopedics", label: "Orthopedics",
-      roles: ["GUEST", "USER", "STAFF", "ADMIN"],
-      dropdown: [
-        { path: "/opt", label: "Orthopedic Power Tools" },
-        { path: "/sis", label: "Surgical Instrument Sets" },
-        { path: "/sm", label: "Sports Medicine" },
-      ]
-    }, 
-    
+    },  
     {
       path: "/collection/tools", label: "Tools",
       roles: ["GUEST", "USER", "STAFF", "ADMIN"],
@@ -141,9 +124,8 @@ const Header = () => {
       ]
     }, 
     { path: "/collection/tms", label: " Trolley & Mounting", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
-    { path: "/collection/medicines", label: "Medicines", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
     {
-      path: "/staff", label: "Partners", roles: ["STAFF", "ADMIN"],
+      path: "/staff", label: "Staff", roles: ["STAFF", "ADMIN"],
       dropdown: [
         { path: "/staff", label: "Update Details" },
         { path: "/", label: "My Pending Request" },

@@ -3,7 +3,7 @@ import M from 'materialize-css';
 import { JobContext } from '../context/JobContext';
 import JobList from '../shared/JobList';
 
-class MyCollection extends Component {
+class Collection extends Component {
   static contextType = JobContext;
 
   componentDidMount() {
@@ -26,4 +26,4 @@ class MyCollection extends Component {
   }
 }
 
-export default MyCollection
+export default Collection

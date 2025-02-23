@@ -95,7 +95,7 @@ const JobServiceForm = () => {
     if (!validateForm()) return;
 
     const method = job.id ? 'PUT' : 'POST';
-    const url = job.id ? `http://localhost:8080/api/jobs/${job.id}` : 'http://localhost:8080/api/jobs';
+    const url = job.id ? `http://192.168.1.6:8080/api/jobs/${job.id}` : 'http://192.168.1.6:8080/api/jobs';
     const storedUser = localStorage.getItem('user');
     const accessToken = storedUser ? JSON.parse(storedUser).accessToken : null;
     const msg = job.id ? 'Updated successful!' : 'Added successful!';
