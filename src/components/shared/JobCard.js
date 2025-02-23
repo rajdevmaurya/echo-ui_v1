@@ -9,6 +9,7 @@ function JobCard({ job, jobUrl, hideDescription, isCollection = false, showDialo
   const cssClasses = `${classes['job-card']} ${isCollection ? classes['collection-card'] : ''} ${isFeatured ? classes['featured-card'] : ''}`;
   return (
     <div className={cssClasses}>
+      <Link to={`${jobUrl}${job.id}`}>
       <div className={`${classes['job-card-header']} common-img-header`}>
         <div className={`${classes['job-card-img']}`}>
           {jobUrl ?
@@ -46,6 +47,7 @@ function JobCard({ job, jobUrl, hideDescription, isCollection = false, showDialo
         }
         {!hideDescription && <div className={`truncate ${classes['card-description']}`}>{job.description}</div>}
       </div>
+      </Link>
     </div>
   );
 }
