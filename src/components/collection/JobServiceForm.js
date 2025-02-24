@@ -78,6 +78,11 @@ const JobServiceForm = () => {
     navigate('/collection');
      M.toast({ html: 'Service request has been created successful!', classes: 'green' });
   };
+  
+  const cancelRequest = () => {
+    navigate('/collection');
+     M.toast({ html: 'Cancel successful!', classes: 'green' });
+  };
 
   const saveJob = async (e) => {
     e.preventDefault();
@@ -179,7 +184,7 @@ const JobServiceForm = () => {
               />
 
               <div className="right-align">
-                <Button varient='text' onClick={redirectJobList}>Cancel</Button>
+                <Button varient='text' onClick={cancelRequest}>Cancel</Button>
                 <Button type='submit' onClick={saveJob}>Submit Request</Button>
               </div>
             </form>
