@@ -5,6 +5,7 @@ import Logo from '../shared/Logo';
 import TimesAgo from '../utils/TimesAgo';
 import API from '../utils/api';
 import Button from '../UI/Button';
+import { Link } from "react-router-dom";
 
 const JobDetails = () => {
   const { job_id } = useParams(); // Access job_id from the URL
@@ -65,10 +66,10 @@ const JobDetails = () => {
           <div className="divider" style={{ margin: '2rem 0' }}></div>
           <div  style={{ fontSize: '16px', fontWeight: 'bold', marginTop: 0 }}>{job.title}</div >
           <div>{job.description}</div>
-          <div className="right-align" style={{ marginTop: '2rem' }}>
-          <Button href={`/collection`} varient='link'>Go Back</Button> &nbsp;&nbsp;&nbsp;<Button href={`/collection/jobs/${job.id}`} varient='link'>Service Request</Button>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
+            <Link to={`/collection`} varient="link">Go Back</Link>
+            <Button href={`/collection/jobs/${job.id}`} varient="link">Service Request</Button>
           </div>
-           
         </>
       )}
     </div>
