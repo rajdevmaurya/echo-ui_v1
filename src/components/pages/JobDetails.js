@@ -51,7 +51,7 @@ const JobDetails = () => {
       {job && (
         <>
           <div className="common-img-header">
-            <div>
+            <div >
               <Logo logoUrl={job.logoUrl} />
             </div>
             <div className="right-align">
@@ -63,7 +63,7 @@ const JobDetails = () => {
             </div>
           </div>
           <div className="divider" style={{ margin: '2rem 0' }}></div>
-          <h1 style={{ marginTop: '0' }}>{job.title}</h1>
+          <div  style={{ fontSize: '16px', fontWeight: 'bold', marginTop: 0 }}>{job.title}</div >
           <div>{job.description}</div>
           <div className="right-align" style={{ marginTop: '2rem' }}>
           <Button href={`/collection`} varient='link'>Go Back</Button> &nbsp;&nbsp;&nbsp;<Button href={`/collection/jobs/${job.id}`} varient='link'>Service Request</Button>
