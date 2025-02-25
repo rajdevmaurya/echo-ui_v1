@@ -67,8 +67,8 @@ const JobDetails = () => {
           <div  style={{ fontSize: '16px', fontWeight: 'bold', marginTop: 0 }}>{job.title}</div >
           <div>{job.description}</div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
-            <Link to={`/collection`} varient="link">Go Back</Link>
-            <Button href={`/collection/jobs/${job.id}`} varient="link">Service Request</Button>
+            <Link to={`/collection`} varient="link">Go Back</Link> 
+            <Button href={`/collection/jobs/${job.id}`} varient="link">Book/Inquiry Service Request</Button>
           </div>
         </>
       )}

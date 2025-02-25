@@ -137,7 +137,7 @@ const JobServiceForm = () => {
       <div className="card">
         <div className="row">
           <ul className="tabs">
-            <li className="tab col s6"><a className="active" href="#form">Service Request Form</a></li>
+            <li className="tab col s6"><a className="active" href="#form">Request Form</a></li>
             <li className="tab col s6"><a href="#home-card-preview">Order Request Form</a></li>
           </ul>
 
@@ -185,7 +185,7 @@ const JobServiceForm = () => {
 
               <div className="right-align">
                 <Button varient='text' onClick={cancleRequest}>Cancel</Button>
-                <Button type='submit' onClick={saveJob}>Submit Request</Button>
+                <Button type='submit' onClick={saveJob}>Submit</Button>
               </div>
             </form>
 

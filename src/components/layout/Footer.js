@@ -11,7 +11,7 @@ const Footer = () => {
             <h4>Contact Details</h4>
             <ul>
               <li>
-                <Link to='/'>List Item 1</Link>
+                <Link to='https://api.whatsapp.com/send?phone=+919999726505&text=Hello'>whatsapp</Link>
               </li>
               <li>
                 <Link to='/'>List Item 2</Link>
