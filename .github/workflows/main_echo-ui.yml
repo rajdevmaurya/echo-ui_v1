@@ -24,7 +24,11 @@ jobs:
 
       - name: Install dependencies and build
         run: |
-          npm ci  # ✅ Ensures dependencies match package-lock.json
+          if [ ! -f package-lock.json ]; then
+            echo "package-lock.json not found, running npm install..."
+            npm install
+          fi
+          npm ci  # Ensures dependencies match package-lock.json
           npm run build --if-present
 
       - name: Remove unnecessary files to reduce size
