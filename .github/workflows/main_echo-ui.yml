@@ -30,16 +30,22 @@ jobs:
           else
             echo "package-lock.json not found, running npm install..."
             npm install
-            npm run build --if-present
             echo "Generating package-lock.json for future runs..."
             npm i --package-lock-only
           fi
+          npm run build --if-present
 
       - name: Remove unnecessary files to reduce size
         run: rm -rf node_modules
 
       - name: Zip only the build folder
-        run: zip -r echo-ui.zip build/
+        run: |
+          if [ -d build ]; then
+            zip -r echo-ui.zip build/
+          else
+            echo "Error: 'build' folder not found. Make sure your build step generates a 'build' directory."
+            exit 1
+          fi
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -78,7 +84,7 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'echo-ui'
-          package: build/  # ✅ Corrected package path
+          package: build/  # Deploy only the build folder
 
       - name: Set Startup Command (for React)
         run: az webapp config set --name echo-ui --resource-group echo-healthcare-rg --startup-file "pm2 serve /home/site/wwwroot/build --no-daemon"
