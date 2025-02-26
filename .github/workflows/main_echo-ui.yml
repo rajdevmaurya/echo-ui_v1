@@ -1,3 +1,4 @@
+     
 name: Build and deploy React app to Azure Web App - echo-ui
 
 on:
@@ -74,3 +75,4 @@ jobs:
 
       - name: Set Startup Command (for React)
         run: az webapp config set --name echo-ui --resource-group echo-healthcare-rg --startup-file "pm2 serve /home/site/wwwroot/build --no-daemon"
+
