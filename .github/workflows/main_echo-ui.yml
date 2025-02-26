@@ -1,4 +1,7 @@
-name: Build and Deploy Node.js App to Azure Web App - echo-ui
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy Node.js app to Azure Web App - echo-ui
 
 on:
   push:
@@ -8,37 +11,29 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
-      contents: read  # Required for actions/checkout
+      contents: read #This is required for actions/checkout
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
 
-      - name: Install Dependencies, Build, and Test
+      - name: npm install, build, and test
         run: |
           npm install
           npm run build --if-present
           npm run test --if-present
-
-      - name: Create Deployment Package (Exclude node_modules)
-        run: |
-          mkdir deploy
-          cp -r $(ls -A | grep -Ev 'node_modules|.git|echo-ui.zip|deploy') deploy/
-          cd deploy
-          zip -r ../echo-ui.zip .  # Zip only necessary files
-
-      - name: Upload Artifact for Deployment Job
+      
+      - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: echo-ui.zip
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,28 +42,27 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write  # Required for requesting the JWT
-      contents: read  # Required for actions/checkout
+      id-token: write #This is required for requesting the JWT
+      contents: read #This is required for actions/checkout
 
     steps:
-      - name: Download Artifact from Build Job
+      - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: node-app
-
-      - name: Unzip Artifact for Deployment
-        run: unzip echo-ui.zip -d app
-
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_873A16F1AB7F428E87BB4B49D29555AA }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_01D2A03BAF394C37A3540C45B62F443C }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_12B3A6C879D94EAD98F365F117F781B8 }}
 
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
+      - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
+        id: deploy-to-webapp
         with:
           app-name: 'echo-ui'
-          package: app  # Deploy only the extracted files
+          slot-name: 'Production'
+          package: .
+          
