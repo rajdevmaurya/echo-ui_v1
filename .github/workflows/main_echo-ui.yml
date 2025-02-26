@@ -1,7 +1,4 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: Build and deploy Node.js app to Azure Web App - echo-ui
+name: Build and deploy React app to Azure Web App - echo-ui
 
 on:
   push:
@@ -11,29 +8,36 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     permissions:
-      contents: read #This is required for actions/checkout
+      contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js version
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '18.x'
+          cache: 'npm'  # Caches npm dependencies to speed up builds
 
-      - name: npm install, build, and test
+      - name: Install dependencies and build
         run: |
           npm install
           npm run build --if-present
-          npm run test --if-present
-      
-      - name: Upload artifact for deployment job
+
+      - name: Remove unnecessary files to reduce size
+        run: rm -rf node_modules
+
+      - name: Zip only the build folder
+        run: zip -r echo-ui.zip build/
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: .
+          path: echo-ui.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -42,27 +46,31 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+      id-token: write
+      contents: read
 
     steps:
-      - name: Download artifact from build job
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: node-app
-      
+
+      - name: Unzip artifact
+        run: unzip echo-ui.zip -d .
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_873A16F1AB7F428E87BB4B49D29555AA }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_01D2A03BAF394C37A3540C45B62F443C }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_12B3A6C879D94EAD98F365F117F781B8 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
 
-      - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v3
+      - name: Deploy to Azure Web App
         id: deploy-to-webapp
+        uses: azure/webapps-deploy@v3
         with:
           app-name: 'echo-ui'
-          slot-name: 'Production'
-          package: .
-          
+          package: build/  # ✅ Corrected package path (only deploys build folder)
+
+      - name: Set Startup Command (for React)
+        run: az webapp config set --name echo-ui --resource-group echo-healthcare-rg --startup-file "pm2 serve /home/site/wwwroot/build --no-daemon"
