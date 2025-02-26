@@ -1,4 +1,3 @@
-     
 name: Build and deploy React app to Azure Web App - echo-ui
 
 on:
@@ -21,11 +20,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18.x'
-          cache: 'npm'  # Caches npm dependencies to speed up builds
+          cache: 'npm'  # Caches npm dependencies
 
       - name: Install dependencies and build
         run: |
-          npm install
+          npm ci  # ✅ Ensures dependencies match package-lock.json
           npm run build --if-present
 
       - name: Remove unnecessary files to reduce size
@@ -71,8 +70,7 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'echo-ui'
-          package: build/  # ✅ Corrected package path (only deploys build folder)
+          package: build/  # ✅ Corrected package path
 
       - name: Set Startup Command (for React)
         run: az webapp config set --name echo-ui --resource-group echo-healthcare-rg --startup-file "pm2 serve /home/site/wwwroot/build --no-daemon"
-
