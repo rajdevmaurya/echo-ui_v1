@@ -89,7 +89,7 @@ const JobServiceForm = () => {
     if (!validateForm()) return;
 
     const method = 'POST';
-    const url = 'http://192.168.1.6:8080/api/orders/jobRequest';
+    const url = 'https://echo-api-b2etapgqfwb3a5ae.centralindia-01.azurewebsites.net/api/orders/jobRequest';
 
     const storedUser = localStorage.getItem('user');
     const accessToken = JSON.parse(storedUser).accessToken;
