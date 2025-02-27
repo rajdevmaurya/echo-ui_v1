@@ -38,7 +38,7 @@ jobs:
       - name: Remove unnecessary files to reduce size
         run: rm -rf node_modules
 
-      - name: Zip only the build folder
+      - name: Zip the build folder
         run: |
           if [ -d build ]; then
             zip -r echo-ui.zip build/
@@ -69,8 +69,8 @@ jobs:
         with:
           name: node-app
 
-      - name: Unzip artifact
-        run: unzip echo-ui.zip -d .
+      - name: Unzip artifact to build folder
+        run: unzip echo-ui.zip -d build
 
       - name: Login to Azure
         uses: azure/login@v2
@@ -84,7 +84,7 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'echo-ui'
-          package: build/  # Deploy only the build folder
+          package: .  # Deploy everything correctly
 
       - name: Set Startup Command (for React)
-        run: az webapp config set --name echo-ui --resource-group echo-healthcare-rg --startup-file "pm2 serve /home/site/wwwroot/build --no-daemon"
+        run: az webapp config set --name echo-ui --resource-group echo-healthcare-rg --startup-file "npx serve -s build"
