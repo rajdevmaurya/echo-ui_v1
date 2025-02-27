@@ -20,38 +20,26 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18.x'
-          cache: 'npm'  # Caches npm dependencies
+          cache: 'npm'
 
       - name: Install dependencies and build
         run: |
           if [ -f package-lock.json ]; then
-            echo "Using npm ci since package-lock.json exists."
             npm ci
           else
-            echo "package-lock.json not found, running npm install..."
             npm install
-            echo "Generating package-lock.json for future runs..."
             npm i --package-lock-only
           fi
           npm run build --if-present
 
-      - name: Remove unnecessary files to reduce size
+      - name: Remove unnecessary files
         run: rm -rf node_modules
 
-      - name: Zip the build folder
-        run: |
-          if [ -d build ]; then
-            zip -r echo-ui.zip build/
-          else
-            echo "Error: 'build' folder not found. Make sure your build step generates a 'build' directory."
-            exit 1
-          fi
-
-      - name: Upload artifact
+      - name: Upload build folder as artifact
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: echo-ui.zip
+          path: build  # Upload the build folder directly
 
   deploy:
     runs-on: ubuntu-latest
@@ -68,9 +56,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
-
-      - name: Unzip artifact to build folder
-        run: unzip echo-ui.zip -d build
+          path: build  # Extract to 'build/' directory
 
       - name: Login to Azure
         uses: azure/login@v2
@@ -84,7 +70,7 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'echo-ui'
-          package: .  # Deploy everything correctly
+          package: build  # Deploy only the contents of 'build/'
 
       - name: Set Startup Command (for React)
-        run: az webapp config set --name echo-ui --resource-group echo-healthcare-rg --startup-file "npx serve -s build"
+        run: az webapp config set --name echo-ui --resource-group echo-healthcare-rg --startup-file "npx serve -s ."
