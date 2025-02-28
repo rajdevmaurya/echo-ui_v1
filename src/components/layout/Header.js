@@ -109,27 +109,25 @@ const Header = () => {
       roles: ["GUEST", "USER", "STAFF", "ADMIN"],
       dropdown: [
         { path: "/collection/le", label: "Lab Equipments" },
-        { path: "/de", label: "Dental Equipments" },
-        { path: "/xray", label: "X-Ray" },
-        { path: "/usm", label: "Ultrasound Machines" },
+        { path: "/collection/de", label: "Dental Equipments" },
+        { path: "/collection/xray", label: "X-Ray" },
+        { path: "/collection/usm", label: "Ultrasound Machines" },
       ]
     },  
     {
       path: "/collection/tools", label: "Tools",
       roles: ["GUEST", "USER", "STAFF", "ADMIN"],
       dropdown: [
-        { path: "/opt", label: "Orthopedic Power Tools" },
-        { path: "/sis", label: "Surgical Instrument Sets" },
-        { path: "/sm", label: "Sports Medicine" },
+        { path: "/collection/opt", label: "Orthopedic Power Tools" },
+        { path: "/collection/sis", label: "Surgical Instrument Sets" },
+        { path: "/collection/sm", label: "Sports Medicine" },
       ]
     }, 
     { path: "/collection/tms", label: " Trolley & Mounting", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
     {
       path: "/staff", label: "Staff", roles: ["STAFF", "ADMIN"],
       dropdown: [
-        { path: "/staff", label: "Update Details" },
-        { path: "/", label: "My Pending Request" },
-        { path: "/", label: "Closed Request" },
+        { path: "/staff", label: "Update Details" }
       ]
     },
     {
@@ -137,7 +135,7 @@ const Header = () => {
       roles: ["ADMIN"],
       dropdown: [
         { path: "/admin", label: "Add/Update Details" },
-        { path: "/", label: "All Service Request" },
+        { path: "/c", label: "All Service Request" },
       ]
     },
     {
@@ -149,17 +147,17 @@ const Header = () => {
   const generateNavList = (menuType) => {
     return navigationLinks
       .filter(({ roles }) => (authenticated ? roles.includes(user?.role) : roles.includes("GUEST")))
-      .map(({ path, label, dropdown }, index) => {
+      .map(({ path, label, dropdown }) => {
         if (dropdown) {
-          const dropdownId = `dropdown-${label.toLowerCase()}-${menuType}`;
+          const dropdownId = `dropdown-${label.toLowerCase().replace(/\s+/g, "-")}-${menuType}`;
           return (
-            <li key={`${label}-${index}`}>
+            <li key={dropdownId}>
               <NavLink to={path || ''} className="dropdown-trigger" data-target={dropdownId} end>
                 {label} <i className="material-icons right">arrow_drop_down</i>
               </NavLink>
               <ul id={dropdownId} className="dropdown-content">
                 {dropdown.map(({ path, label }) => (
-                  <li key={`${path}-${index}`}><NavLink to={path} end>{label}</NavLink></li>
+                  <li key={path}><NavLink to={path} end>{label}</NavLink></li>
                 ))}
               </ul>
             </li>
@@ -168,7 +166,7 @@ const Header = () => {
         return <li key={path}><NavLink to={path} end>{label}</NavLink></li>;
       });
   };
-
+  
   const loginLogoutLink = <Link to="#" onClick={handleLoginLogout}>
     {authenticated ? <i className="material-icons left">exit_to_app</i> : <i className="material-icons left">person</i>} {logInOutText}
   </Link>;

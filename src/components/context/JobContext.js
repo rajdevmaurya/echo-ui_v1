@@ -53,7 +53,13 @@ export default class JobProvider extends Component {
   };
 
   getAllJobs = async (page, size) => {
-    API.get(`jobs?page=${page}&size=${size}`)
+    let lookup = window.location.pathname;
+    let spath='jobs';
+    if(lookup.startsWith("/collection/")){
+       spath = 'jobs'+lookup;
+    }
+
+    API.get(`${spath}?page=${page}&size=${size}`)
       .then(response => {
         const { content, first, last, number, size, totalElements, totalPages } = response.data;
         this.setState({
@@ -63,7 +69,7 @@ export default class JobProvider extends Component {
       })
       .catch(error => {
         console.log(error);
-        M.toast({ html: error.message, classes: 'rounded' });
+        //M.toast({ html: error.message, classes: 'rounded' });
       });
   };
 

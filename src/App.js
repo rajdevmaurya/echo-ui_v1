@@ -45,14 +45,18 @@ function App() {
               <Route path='/collection' element={<Collection />} />
               <Route path='/collection/jobs/:job_id' element={<JobServiceForm />} />
               <Route path='/jobs/:job_id' element={<JobDetails />} />
-              <Route path='/collection/pediatrics' element={<Collection />} />
+
+              <Route path='/collection/:lookup' element={<Collection />} />
+              {/**
+              <Route path='/collection/de' element={<Collection />} />
+              <Route path='/collection/xray' element={<Collection />} />
+              <Route path='/collection/usm' element={<Collection />} />
+              
               <Route path='/collection/orthopedics' element={<Collection />} />
               <Route path='/collection/tools' element={<Collection />} />
               <Route path='/collection/tms' element={<Collection />} />
               <Route path='/collection/medicines' element={<Collection />} />
-              
-              
-
+              */}
               <Route path='/staff' element={<PrivateRoute><Staff /></PrivateRoute>} />
               <Route path='/staff/jobs' element={<PrivateRoute><JobForm /></PrivateRoute>} />
               <Route path='/staff/jobs/:job_id' element={<PrivateRoute><JobForm /></PrivateRoute>} />
