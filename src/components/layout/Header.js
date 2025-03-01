@@ -19,7 +19,7 @@ const sidebarDropdownOptions = {
   ...dropdownOptions,
   closeOnClick: true,
   inDuration: 3000,
-  outDuration: 2000,
+  outDuration: 3000,
   onOpenStart: (el) => window.innerWidth <= 992 && el.closest("li")?.classList.add("dropdown-expanded"),
   onCloseEnd: (el) => window.innerWidth <= 992 && el.closest("li")?.classList.remove("dropdown-expanded"),
 };

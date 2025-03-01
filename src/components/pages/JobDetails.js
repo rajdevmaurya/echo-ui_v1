@@ -51,7 +51,7 @@ const JobDetails = () => {
                 <div><strong>Feature Section:</strong> {job.featureDescription}</div>
               </div>
 
-              <div className="divider"></div>
+              {/*<div className="divider"></div> *}
 
               {/* Buttons */}
               <div className="job-buttons">
