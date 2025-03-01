@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../shared/Logo';
-import TimesAgo from '../utils/TimesAgo';
+//import TimesAgo from '../utils/TimesAgo';
 import Button from '../UI/Button';
 import classes from './JobCard.module.css';
 
