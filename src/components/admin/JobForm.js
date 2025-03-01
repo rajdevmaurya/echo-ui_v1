@@ -17,6 +17,7 @@ const JobServiceForm = () => {
   });
   const navigate = useNavigate();
   const { job_id } = useParams();
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   /* set scroll-height to textarea */
   useEffect(() => {
@@ -95,7 +96,7 @@ const JobServiceForm = () => {
     if (!validateForm()) return;
 
     const method = job.id ? 'PUT' : 'POST';
-    const url = job.id ? `https://echo-api-b2etapgqfwb3a5ae.centralindia-01.azurewebsites.net/api/jobs/${job.id}` : 'https://echo-api-b2etapgqfwb3a5ae.centralindia-01.azurewebsites.net/api/jobs';
+    const url = job.id ? `${API_BASE_URL}/api/jobs/${job.id}` :`${API_BASE_URL}/api/jobs`;
     const storedUser = localStorage.getItem('user');
     const accessToken = storedUser ? JSON.parse(storedUser).accessToken : null;
     const msg = job.id ? 'Updated successful!' : 'Added successful!';

@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+const API_BASE_URL=process.env.REACT_APP_API_BASE_URL;
 export default axios.create({
-  baseURL: `https://echo-api-b2etapgqfwb3a5ae.centralindia-01.azurewebsites.net/api/`
+  baseURL: `${API_BASE_URL}/api/`
 });

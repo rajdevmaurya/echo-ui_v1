@@ -17,6 +17,7 @@ const JobServiceForm = () => {
 
   const navigate = useNavigate();
   const { job_id } = useParams();
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     M.updateTextFields();
@@ -89,7 +90,7 @@ const JobServiceForm = () => {
     if (!validateForm()) return;
 
     const method = 'POST';
-    const url = 'https://echo-api-b2etapgqfwb3a5ae.centralindia-01.azurewebsites.net/api/orders/jobRequest';
+    const url = `${API_BASE_URL}/api/orders/jobRequest`;
 
     const storedUser = localStorage.getItem('user');
     const accessToken = JSON.parse(storedUser).accessToken;

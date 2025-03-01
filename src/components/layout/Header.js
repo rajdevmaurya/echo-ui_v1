@@ -97,8 +97,8 @@ const Header = () => {
       ]
     },
     { path: "/collection/tms", label: "Trolley & Mounting", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
-    { path: "/staff", label: "Staff", roles: ["STAFF", "ADMIN"], dropdown: [{ path: "/staff", label: "Update Details" }] },
-    { path: "/admin", label: "Admin", roles: ["ADMIN"], dropdown: [{ path: "/admin", label: "Add/Update Details" }, { path: "/c", label: "All Service Request" }] },
+    //{ path: "/staff", label: "Staff", roles: ["STAFF", "ADMIN"], dropdown: [{ path: "/staff", label: "Update Details" }] },
+    { path: "/admin", label: "Admin Master", roles: ["ADMIN"], dropdown: [{ path: "/admin", label: "Add/Update Details" }, { path: "/c", label: "All Service Request" }] },
     { path: "/collection", label: "Sales & Services", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
   ], []);
 

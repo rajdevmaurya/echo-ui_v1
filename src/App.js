@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Footer from './components/layout/Footer';
 import Header from './components/layout/Header';
-import JobForm from './components/staff/JobForm';
+//import JobForm from './components/staff/JobForm';
 import JobServiceForm from './components/collection/JobServiceForm';
 import { AuthProvider } from './components/context/AuthContext';
 import PrivateRoute from './components/utils/PrivateRoute';
@@ -11,7 +11,7 @@ import JobProvider from './components/context/JobContext';
 import Login from './components/pages/Login';
 import Signup from './components/pages/Signup';
 import Home from './components/pages/Home';
-import Staff from './components/pages/Staff';
+//import Staff from './components/pages/Staff';
 import Admin from './components/pages/Admin';
 import JobDetails from './components/pages/JobDetails';
 
@@ -56,11 +56,11 @@ function App() {
               <Route path='/collection/tools' element={<Collection />} />
               <Route path='/collection/tms' element={<Collection />} />
               <Route path='/collection/medicines' element={<Collection />} />
-              */}
+              
               <Route path='/staff' element={<PrivateRoute><Staff /></PrivateRoute>} />
               <Route path='/staff/jobs' element={<PrivateRoute><JobForm /></PrivateRoute>} />
               <Route path='/staff/jobs/:job_id' element={<PrivateRoute><JobForm /></PrivateRoute>} />
-
+            */}
               <Route path='/admin' element={<PrivateRoute><Admin /></PrivateRoute>} />
               <Route path='/admin/jobs' element={<PrivateRoute><JobAdminForm /></PrivateRoute>} />
               <Route path='/admin/jobs/:job_id' element={<PrivateRoute><JobAdminForm /></PrivateRoute>} />
