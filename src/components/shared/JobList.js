@@ -5,7 +5,7 @@ import JobCard from './JobCard';
 import Pagination from '../UI/Pagination';
 import classes from './JobList.module.css';
 
-function JobList({ isCollection, root, jobs, hideDescription = true, deleteJob, featured, searchJob, pagination = {}, searchText }) {
+function JobList({ isCollection, root, jobs = [], hideDescription = true, deleteJob, featured, searchJob, pagination = {}, searchText }) {
   const [selectedJob, setSelectedJob] = useState(null);
   const deleteModalRef = useRef(null);
 
@@ -34,28 +34,25 @@ function JobList({ isCollection, root, jobs, hideDescription = true, deleteJob, 
     showDialog
   };
 
-  const collectionList = jobs.map(job => {
-    return (
-      <div className="collection-item" key={job.id}>
-        <JobCard job={job} isCollection='true' {...commonAttr} />
-      </div>
-    );
-  });
+  const collectionList = (Array.isArray(jobs) ? jobs : []).map(job => (
+    <div className="collection-item" key={job.id}>
+      <JobCard job={job} isCollection="true" {...commonAttr} />
+    </div>
+  ));
 
   return (
     <React.Fragment>
-      {
-        isCollection
-          ?
-          <div className='collection'>{collectionList}</div>
-          :
-          <div className={`${classes['cards-wrapper']} ${featured ? classes['featured-cards'] : ''}`}>
-            {jobs.map((job) => <JobCard job={job} key={job.id} {...commonAttr} />)}
-          </div>
-      }
+      {isCollection ? (
+        <div className='collection'>{collectionList}</div>
+      ) : (
+        <div className={`${classes['cards-wrapper']} ${featured ? classes['featured-cards'] : ''}`}>
+          {(Array.isArray(jobs) ? jobs : []).map((job) => (
+            <JobCard job={job} key={job.id} {...commonAttr} />
+          ))}
+        </div>
+      )}
 
-
-      {pagination.totalPages > 1 && (
+      {pagination?.totalPages > 1 && (
         <Pagination
           className="center"
           pagination={pagination}
@@ -70,4 +67,4 @@ function JobList({ isCollection, root, jobs, hideDescription = true, deleteJob, 
   );
 }
 
-export default JobList;;
+export default JobList;
