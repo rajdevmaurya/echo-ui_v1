@@ -31,7 +31,7 @@ const Footer = () => {
               Business: support@echohealthcare.in
               </li>
               <li>
-              Business: investors@echohealthcare.in
+              Investors: investors@echohealthcare.in
               </li>
               <li>
               <Link to='https://api.whatsapp.com/send?phone=+919999726505&text=Hello'>whatsapp</Link>
