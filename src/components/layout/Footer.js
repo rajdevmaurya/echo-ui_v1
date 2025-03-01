@@ -11,16 +11,16 @@ const Footer = () => {
             <h4>Contact Details</h4>
             <ul>
               <li>
-                <Link to='https://api.whatsapp.com/send?phone=+919999726505&text=Hello'>whatsapp</Link>
+              Board: +91-811111111
               </li>
               <li>
-                <Link to='/'>List Item 2</Link>
+              Business: +91-8822222
               </li>
               <li>
-                <Link to='/'>List Item 3</Link>
+              Phone: +91-911111111
               </li>
               <li>
-                <Link to='/'>List Item 4</Link>
+                <Link to='/'></Link>
               </li>
             </ul>
           </div>
@@ -28,16 +28,16 @@ const Footer = () => {
             <h4>Enquiry Details</h4>
             <ul>
               <li>
-                <Link to='/'>List Item 1</Link>
+              Business: support@echohealthcare.in
               </li>
               <li>
-                <Link to='/'>List Item 2</Link>
+              Business: investors@echohealthcare.in
               </li>
               <li>
-                <Link to='/'>List Item 3</Link>
+              <Link to='https://api.whatsapp.com/send?phone=+919999726505&text=Hello'>whatsapp</Link>
               </li>
               <li>
-                <Link to='/'>List Item 4</Link>
+                <Link to='/'></Link>
               </li>
             </ul>
           </div>
@@ -45,16 +45,16 @@ const Footer = () => {
             <h4>Other Links</h4>
             <ul>
               <li>
-                <Link to='/'>List Item 1</Link>
+              <Link to='/'>About Us</Link>
               </li>
               <li>
-                <Link to='/'>List Item 2</Link>
+                <Link to='/'>Support & Client Services</Link>
               </li>
               <li>
-                <Link to='/'>List Item 3</Link>
+                <Link to='/'>Privacy Policy</Link>
               </li>
               <li>
-                <Link to='/'>List Item 4</Link>
+                <Link to='/'>Site Map</Link>
               </li>
             </ul>
           </div>
@@ -87,10 +87,10 @@ const Footer = () => {
         <div className={`${classes['footer-bottom']}`}>
           <p className='right-align'>
             {new Date().getFullYear()} &copy; All rights reserved by{' '}
-            <Link to="https://www.healthcare.in"
+            <Link to="https://echohealthcare.in"
               target="_blank"
               rel="noopener noreferrer">
-              www.healthcare.in
+              www.echohealthcare.in
             </Link>
           </p>
         </div>

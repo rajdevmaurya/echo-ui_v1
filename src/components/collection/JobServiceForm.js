@@ -11,6 +11,9 @@ const JobServiceForm = () => {
     title: '',
     company: '',
     logoUrl: '',
+    lookupType: '',
+    brand: '',
+    featureDescription: '',
     description: '',
     createDate: ''
   });
@@ -57,6 +60,9 @@ const JobServiceForm = () => {
           title: jobData.title,
           company: '',
           logoUrl: '',
+          lookupType: '',
+          brand: '',
+          featureDescription: '',
           description: '',
           createDate: jobData.createDate
         });
@@ -152,7 +158,7 @@ const JobServiceForm = () => {
                 required
                 label='Title'
                 className="validate"
-                value={jobData.title}
+                value={job.title}
                 id="title"
                 onChange={handleChange}
                 fieldErrorMsg='Title cannot be empty'
@@ -173,6 +179,35 @@ const JobServiceForm = () => {
                 onChange={handleChange}
                 label='Address/Location'
               />
+              <Input
+                required
+                className="validate"
+                value={jobData.lookupType}
+                id="lookupType"
+                onChange={handleChange}
+                label='Lookup Type'
+                fieldErrorMsg='Lookup Typecannot be empty'
+              />
+             <Input
+                required
+                className="validate"
+                value={jobData.brand}
+                id="brand"
+                onChange={handleChange}
+                label='Brand'
+                fieldErrorMsg='Brand cannot be empty'
+              />
+
+            <Input
+              required
+              className="materialize-textarea validate"
+              value={jobData.featureDescription}
+              id="featureDescription"
+              onChange={handleChange} 
+              type="textarea"
+              label='Feature Description'
+              fieldErrorMsg='Feature Description Typecannot be empty'
+            />
               <Input
                 required
                 className="materialize-textarea validate"

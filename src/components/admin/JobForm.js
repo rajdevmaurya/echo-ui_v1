@@ -12,6 +12,7 @@ const JobServiceForm = () => {
     title: '',
     company: '',
     logoUrl: '',
+    lookupType: '',
     description: '',
     createDate: ''
   });
@@ -53,6 +54,9 @@ const JobServiceForm = () => {
             title: jobData.title,
             company: jobData.company,
             logoUrl: jobData.logoUrl,
+            lookupType: jobData.logoUrl,
+            brand: jobData.brand,
+            featureDescription: jobData.featureDescription,
             description: jobData.description,
             createDate: jobData.createDate
           });
@@ -165,12 +169,43 @@ const JobServiceForm = () => {
         label='Company'
         fieldErrorMsg='Company cannot be empty'
       />
+
+
       <Input
         className="validate"
         value={job.logoUrl}
         id="logoUrl"
         onChange={handleChange}
         label='Logo Url'
+      />
+
+     <Input
+        required
+        className="validate"
+        value={job.lookupType}
+        id="lookupType"
+        onChange={handleChange}
+        label='Lookup Type'
+        fieldErrorMsg='Lookup Typecannot be empty'
+      />
+      <Input
+        required
+        className="validate"
+        value={job.brand}
+        id="brand"
+        onChange={handleChange}
+        label='Brand'
+        fieldErrorMsg='Brand Typecannot be empty'
+      />
+     <Input
+        required
+        className="validate"
+         type='textarea'
+        value={job.featureDescription}
+        id="featureDescription"
+        onChange={handleChange}
+        label='Feature Description'
+        fieldErrorMsg='Feature Description Typecannot be empty'
       />
       <Input
         required
