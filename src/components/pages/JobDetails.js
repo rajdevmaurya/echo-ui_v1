@@ -1,58 +1,68 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import M from 'materialize-css';
 import Logo from '../shared/Logo';
 import TimesAgo from '../utils/TimesAgo';
 import API from '../utils/api';
-import Button from '../UI/Button';
-import { Link } from "react-router-dom";
+import './JobDetails.css'; // New CSS file for styling
 
 const JobDetails = () => {
-  const { job_id } = useParams(); // Access job_id from the URL
+  const { job_id } = useParams(); 
   const [job, setJob] = useState(null);
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchJob = async () => {
       try {
-        const response = await API.get(`jobs/${job_id}`, {
-         // headers: {
-         //   Authorization: `Bearer ${accessToken}`,
-         // },
-        });
+        const response = await API.get(`jobs/${job_id}`);
         setJob(response.data);
       } catch (error) {
         console.error(error);
         M.toast({ html: error.message || 'Failed to fetch job details', classes: 'rounded' });
       }
     };
-
     fetchJob();
-  }, [job_id, navigate]); // Add `navigate` as dependency
+  }, [job_id, navigate]);
 
   return (
-    <div className="container">
+    <div className="container no-top-gap job-container">
       {job && (
         <>
-          <div className="common-img-header">
-            <div >
-              <Logo logoUrl={job.logoUrl} />
+          {/* Responsive Two-Section Layout */}
+          <div className="job-content">
+            {/* Logo Section */}
+            <div className="job-logo">
+              <Logo logoUrl={job.logoUrl} className="logo-img" />
             </div>
-            <div className="right-align">
-              <ul>
-                <li>{job.company}</li>
-                <li>{job.id}</li>
-                <li><TimesAgo createDate={job.createDate} /></li>
-              </ul>
+
+            {/* Job Details Section */}
+            <div className="job-details">
+              <div className="job-header">
+                <h2>{job.title}</h2>
+                <Link to={`/collection`} className="go-back-link">Go Back</Link>
+              </div>
+              
+              <div className="divider"></div>
+
+              <div className="job-info">
+                <div><strong>Company:</strong> {job.company}</div>
+                <div><strong>Job ID:</strong> {job.id}</div>
+                <div><strong>Created:</strong> <TimesAgo createDate={job.createDate} /></div>
+                <div><strong>Feature Section:</strong> {job.featureDescription}</div>
+              </div>
+
+              <div className="divider"></div>
+
+              {/* Buttons */}
+              <div className="job-buttons">
+                <Link to={`/collection/jobs/${job.id}`} className="btn custom-dark-green">Inquiry</Link>
+                <Link to={`/collection/jobs/${job.id}`} className="btn custom-dark-green">Book Service</Link>
+              </div>
             </div>
           </div>
-          <div className="divider" style={{ margin: '2rem 0' }}></div>
-          <div  style={{ fontSize: '16px', fontWeight: 'bold', marginTop: 0 }}>{job.title}</div >
+
+          <div className="divider"></div>
           <div>{job.description}</div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
-            <Link to={`/collection`} varient="link">Go Back</Link> 
-            <Button href={`/collection/jobs/${job.id}`} varient="link">Book/Inquiry Service Request</Button>
-          </div>
         </>
       )}
     </div>
