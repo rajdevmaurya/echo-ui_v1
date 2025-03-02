@@ -13,7 +13,7 @@ const TopHeader = () => {
         <ul>
           <li><Link to='/'><i className="material-icons">location_on</i> Delhi, India</Link></li>
           <li><Link to='/'><i className="material-icons">phone</i> +1 234 567 890</Link></li>
-          <li><Link to='/'><i className="material-icons">email</i> support@healthcare.com</Link></li>
+          <li><Link to='/'><i className="material-icons">email</i> support@echohealthcare.com</Link></li>
         </ul>
         {/* <div className="right"></div> */}
       </div>

@@ -145,7 +145,7 @@ const JobServiceForm = () => {
         <div className="row">
           <ul className="tabs">
             <li className="tab col s6"><a className="active" href="#form">Request Form</a></li>
-            <li className="tab col s6"><a href="#home-card-preview">Order Request Form</a></li>
+            <li className="tab col s6"><a href="#home-card-preview">Order Form</a></li>
           </ul>
 
           <div className="tab-content">

@@ -13,6 +13,8 @@ const JobServiceForm = () => {
     company: '',
     logoUrl: '',
     lookupType: '',
+    brand: '',
+    featureDescription: '',
     description: '',
     createDate: ''
   });
@@ -54,7 +56,7 @@ const JobServiceForm = () => {
             title: jobData.title,
             company: jobData.company,
             logoUrl: jobData.logoUrl,
-            lookupType: jobData.logoUrl,
+            lookupType: jobData.lookupType,
             brand: jobData.brand,
             featureDescription: jobData.featureDescription,
             description: jobData.description,
