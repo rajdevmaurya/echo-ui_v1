@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import M from 'materialize-css';
 import DeleteDialog from './DeleteDialog';
-import JobCard from './JobCard';
+import NewJobCard from './NewJobCard';
 import Pagination from '../UI/Pagination';
 import classes from './JobList.module.css';
 
@@ -36,7 +36,7 @@ function JobList({ isCollection, root, jobs = [], hideDescription = true, delete
 
   const collectionList = (Array.isArray(jobs) ? jobs : []).map(job => (
     <div className="collection-item" key={job.id}>
-      <JobCard job={job} isCollection="true" {...commonAttr} />
+      <NewJobCard job={job} isCollection="true" {...commonAttr} />
     </div>
   ));
 
@@ -47,7 +47,7 @@ function JobList({ isCollection, root, jobs = [], hideDescription = true, delete
       ) : (
         <div className={`${classes['cards-wrapper']} ${featured ? classes['featured-cards'] : ''}`}>
           {(Array.isArray(jobs) ? jobs : []).map((job) => (
-            <JobCard job={job} key={job.id} {...commonAttr} />
+            <NewJobCard job={job} key={job.id} {...commonAttr} />
           ))}
         </div>
       )}

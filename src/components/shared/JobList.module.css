@@ -1,6 +1,6 @@
 .cards-wrapper {
   display: grid;
-  gap: calc(var(--card-padding) * 1.25);
+  gap: calc(var(--card-padding) * .25);
 }
 
 .featured-cards {
