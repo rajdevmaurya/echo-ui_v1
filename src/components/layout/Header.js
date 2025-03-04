@@ -18,8 +18,8 @@ const dropdownOptions = {
 const sidebarDropdownOptions = {
   ...dropdownOptions,
   closeOnClick: true,
-  inDuration: 3000,
-  outDuration: 3000,
+  inDuration: 6000,
+  outDuration: 6000,
   onOpenStart: (el) => window.innerWidth <= 992 && el.closest("li")?.classList.add("dropdown-expanded"),
   onCloseEnd: (el) => window.innerWidth <= 992 && el.closest("li")?.classList.remove("dropdown-expanded"),
 };
@@ -182,7 +182,7 @@ const Header = () => {
         </nav>
       </header>
 
-      <ul className={`${classes.sidenav} sidenav`} id="mobile-menu">
+      <ul className={`${classes.sidenav} sidenav`} id="mobile-menu" style={{ width: '220px' }}>
         <li>
           <Link to="/" className={`${classes['brand-logo']} brand-logo`} style={{ backgroundColor: 'var(--primary-color)' }}>
             <img src={SiteLogo} alt="Echo Health care" />
