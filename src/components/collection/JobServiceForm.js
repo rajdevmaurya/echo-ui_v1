@@ -90,7 +90,7 @@ const JobServiceForm = () => {
     if (!validateForm()) return;
 
     const method = 'POST';
-    const url = `${process.env.REACT_APP_BASE_URL}/api/orders/jobRequest`;
+    const url = `/orders/jobRequest`;
 
     const storedUser = localStorage.getItem('user');
     const accessToken = JSON.parse(storedUser).accessToken;

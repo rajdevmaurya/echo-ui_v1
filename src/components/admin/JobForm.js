@@ -100,7 +100,7 @@ const JobServiceForm = () => {
     if (!validateForm()) return;
 
     const method = job.id ? 'PUT' : 'POST';
-    const url = job.id ? `${process.env.REACT_APP_BASE_URL}/api/jobs/${job.id}` : `${process.env.REACT_APP_BASE_URL}/api/jobs`;
+    const url = job.id ? `/jobs/${job.id}` : `/jobs`;
     const storedUser = localStorage.getItem('user');
     const accessToken = storedUser ? JSON.parse(storedUser).accessToken : null;
     const msg = job.id ? 'Updated successful!' : 'Added successful!';
@@ -141,7 +141,7 @@ const JobServiceForm = () => {
   const mockJobIdAndCreateDate = () => {
     return {
       ...job,
-      id: 'XXXXXXXXXXXXXXXXXXXXXXXX',
+      id: '001',
       createDate: new Date()
     };
   };
