@@ -90,32 +90,32 @@ const Header = () => {
       .filter(({ roles }) => (authenticated ? roles.includes(user?.role) : roles.includes("GUEST")))
       .map(({ path, label, dropdown }) => {
         if (dropdown) {
-         // const dropdownId = `dropdown-${label.toLowerCase().replace(/\s+/g, '-')}-${menuType}`;
-         const dropdownId = `dropdown-${label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-_]/g, '')}-${menuType}`;
+          const dropdownId = `dropdown-${label.toLowerCase().replace(/\s+/g, "-")}-${menuType}`;
           return (
-            <li key={`${label}-${menuType}`}>
-              <NavLink to={path || ''} className="dropdown-trigger" data-target={dropdownId}
-                onClick={() => {
-                  const instance = M.Dropdown.getInstance(document.querySelector(`#${dropdownId}`));
-                  if (instance) instance.close();
-                }}
-                end>
+            <li key={dropdownId}>
+              <NavLink to={path || ''} className="dropdown-trigger" data-target={dropdownId} end>
                 {label} <i className="material-icons right">arrow_drop_down</i>
               </NavLink>
               <ul id={dropdownId} className="dropdown-content">
                 {dropdown.map(({ path, label }) => (
-                  <li key={`${path}-${label}`}><NavLink to={path}
-                    onClick={() => {
-                      const instance = M.Dropdown.getInstance(document.querySelector(`#${dropdownId}`));
-                      if (instance) instance.close();
-                    }}
-                    end>{label}</NavLink></li>
+                  <li key={path}>
+                    <NavLink to={path} 
+                      end
+                      onClick={(e) => {
+                        e.preventDefault(); // Prevent default navigation if needed
+                        const instance = M.Dropdown.getInstance(document.getElementById(dropdownId));
+                        if (instance) instance.close(); // Close dropdown after clicking
+                        window.location.href = path; // Navigate to the selected path
+                      }}>
+                      {label}
+                    </NavLink>
+                  </li>
                 ))}
               </ul>
             </li>
           );
         }
-        return <li key={path || label}><NavLink to={path} end>{label}</NavLink></li>;
+        return <li key={path}><NavLink to={path} end>{label}</NavLink></li>;
       });
   };
 
