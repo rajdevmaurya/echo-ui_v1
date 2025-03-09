@@ -1,29 +1,53 @@
-import React, { Component } from 'react';
-import M from 'materialize-css';
+import React, { useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import { JobContext } from '../context/JobContext';
 import JobList from '../shared/JobList';
+import navigationLinks from '../layout/helper/navigationLinks';
 
-class Collection extends Component {
-  static contextType = JobContext;
+const Collection = () => {
+  const { category } = useParams();
+  const { jobs, searchJob, pagination = {}, searchText, getJobWithCategory } = useContext(JobContext);
 
-  componentDidMount() {
-    const floatingActionButton = document.querySelectorAll('.fixed-action-btn');
-    M.FloatingActionButton.init(floatingActionButton, { direction: 'button' });
-  }
+  useEffect(() => {
+    let isMounted = true;
 
-  render() {
-    const { jobs, searchJob, pagination = {}, searchText } = this.context;
+    const timeoutId = setTimeout(() => {
+      if (!isMounted) return;
 
-    return (
-      <div className="container no-top-gap">
-        <JobList jobs={jobs}
-          hideDescription={false}
-          pagination={pagination}
-          searchText={searchText}
-          searchJob={searchJob} />
-      </div>
-    );
-  }
-}
+      const collectionCategories = navigationLinks
+        .flatMap(link =>
+          link.path.startsWith("/collection/")
+            ? [link.path]
+            : (link.dropdown ? link.dropdown.map(item => item.path) : [])
+        )
+        .map(path => path.split("/").pop());
 
-export default Collection
+      if (category && collectionCategories.includes(category)) {
+        getJobWithCategory(category);
+      }
+    }, 100);
+
+    return () => {
+      isMounted = false;
+      clearTimeout(timeoutId);
+    };
+  }, [category, getJobWithCategory]);
+
+  return (
+    <div className="container collection-wrapper">
+      <h2>
+        {category ? category.replace("-", " ").replace(/\b\w/g, char => char.toUpperCase())
+          : "All Collections"}
+      </h2>
+
+      <JobList
+        jobs={jobs}
+        pagination={pagination}
+        searchText={searchText}
+        searchJob={searchJob}
+      />
+    </div>
+  );
+};
+
+export default Collection;

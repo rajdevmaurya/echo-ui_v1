@@ -20,7 +20,6 @@ const JobServiceForm = () => {
   });
   const navigate = useNavigate();
   const { job_id } = useParams();
-  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   /* set scroll-height to textarea */
   useEffect(() => {
@@ -50,7 +49,6 @@ const JobServiceForm = () => {
             }
           });
           const jobData = response.data;
-          console.log(jobData);
           setJob({
             id: jobData.id,
             title: jobData.title,
@@ -102,7 +100,7 @@ const JobServiceForm = () => {
     if (!validateForm()) return;
 
     const method = job.id ? 'PUT' : 'POST';
-    const url = job.id ? `${API_BASE_URL}/api/jobs/${job.id}` :`${API_BASE_URL}/api/jobs`;
+    const url = job.id ? `${process.env.REACT_APP_BASE_URL}/api/jobs/${job.id}` : `${process.env.REACT_APP_BASE_URL}/api/jobs`;
     const storedUser = localStorage.getItem('user');
     const accessToken = storedUser ? JSON.parse(storedUser).accessToken : null;
     const msg = job.id ? 'Updated successful!' : 'Added successful!';
@@ -151,7 +149,7 @@ const JobServiceForm = () => {
   const form = (
     <form onSubmit={saveJob}>
       {job.id &&
-        <Input disabled value={job.id} id="id" label='Id' />
+        <Input type="hidden" disabled value={job.id} id="id" />
       }
       <Input
         required
@@ -171,8 +169,6 @@ const JobServiceForm = () => {
         label='Company'
         fieldErrorMsg='Company cannot be empty'
       />
-
-
       <Input
         className="validate"
         value={job.logoUrl}
@@ -180,8 +176,7 @@ const JobServiceForm = () => {
         onChange={handleChange}
         label='Logo Url'
       />
-
-     <Input
+      <Input
         required
         className="validate"
         value={job.lookupType}
@@ -220,7 +215,7 @@ const JobServiceForm = () => {
         fieldErrorMsg='Description cannot be empty'
       />
       <div className="right-align">
-        <Button varient='text' handleClick={cancelHandler}>Cancel</Button>
+        <Button variant='text' handleClick={cancelHandler}>Cancel</Button>
         <Button type='submit' handleClick={saveJob}>Save</Button>
       </div>
     </form>
@@ -230,13 +225,11 @@ const JobServiceForm = () => {
 
   return (
     <div className="container no-top-gap">
-      <div className="card">
+      <div className='card'>
         <div className="row">
           <ul className="tabs">
             <li className="tab col s4">
-              <a className="active" href="#form">
-                Form
-              </a>
+              <a className="active" href="#form">Form</a>
             </li>
             <li className="tab col s4">
               <a href="#home-card-preview">Home Card Preview</a>
@@ -250,7 +243,7 @@ const JobServiceForm = () => {
               {form}
             </div>
             <div id="home-card-preview">
-              <JobCard job={jobData} isFeatured={true} hideDescription={true} />
+              <JobCard job={jobData} isFeatured={true} />
             </div>
             <div id="service-card-preview">
               <JobCard job={jobData} />

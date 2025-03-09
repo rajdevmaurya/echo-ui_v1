@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import M from 'materialize-css';
 import Logo from '../shared/Logo';
-import TimesAgo from '../utils/TimesAgo';
 import API from '../utils/api';
-import './JobDetails.css'; // New CSS file for styling
+import Button from '../UI/Button';
+import { Link } from "react-router-dom";
 
 const JobDetails = () => {
-  const { job_id } = useParams(); 
+  const { job_id } = useParams(); // Access job_id from the URL
   const [job, setJob] = useState(null);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hook for navigation
 
   useEffect(() => {
     const fetchJob = async () => {
@@ -21,51 +21,74 @@ const JobDetails = () => {
         M.toast({ html: error.message || 'Failed to fetch job details', classes: 'rounded' });
       }
     };
+
     fetchJob();
   }, [job_id, navigate]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      const tabs = document.querySelectorAll('.tabs');
+      M.Tabs.init(tabs, {});
+    }, 100);
+  }, [job]);
+
   return (
-    <div className="container no-top-gap job-container">
+    <div className="container job-details-wrapper">
       {job && (
-        <>
-          {/* Responsive Two-Section Layout */}
-          <div className="job-content">
-            {/* Logo Section */}
-            <div className="job-logo">
-              <Logo logoUrl={job.logoUrl} className="logo-img" />
+        <div className='card' style={{ padding: '1rem' }}>
+          <div style={{ marginBottom: '1rem' }}>
+            <Button variant='icon' handleClick={() => navigate(-1)}><i className='material-icons'>arrow_back</i> <span className='hide-on-med-and-down'>Go Back</span></Button>
+          </div>
+          <div className="common-img-header">
+            <div><Logo logoUrl={job?.logoUrl} alt={job?.company} /></div>
+            <div>
+              <h2 style={{ fontSize: '20px', fontWeight: '500', marginTop: 0, color: 'inherit', marginBottom: '0.75rem' }}>{job?.title}</h2>
+              <p>Brand: <strong>{job?.brand}</strong></p>
+              {/* <p><TimesAgo createDate={job?.createDate} /></p> */}
+              <div className="divider" style={{ margin: '1rem 0' }}></div>
+              <div className='pre-text' style={{ marginBottom: '1rem' }}>
+                {job?.featureDescription}
+              </div>
+              <div className="divider hide-on-med-and-down" style={{ margin: '2rem 0' }}></div>
+              <div className='btn-wrapper'>
+                <Button href={`/collection/jobs/${job?.id}`} variant="link-secondary-outline">Inquiry</Button>
+                <Button href={`/collection/jobs/${job?.id}`} variant="link-secondary">Book Service</Button>
+              </div>
+              <div className="divider" style={{ margin: '2rem 0' }}></div>
+              {job?.posttype && <p>Categories: <Link to={`/collection/${job?.posttype.toLowerCase()}`}><strong>{job?.posttype}</strong></Link></p>}
+              <p style={{ marginTop: '0.5rem' }}>Company: <strong>{job?.company}</strong></p>
             </div>
+          </div>
+          {/* <div className="divider" style={{ margin: '2rem 0' }}></div> */}
 
-            {/* Job Details Section */}
-            <div className="job-details">
-              <div className="job-header">
-                <h2>{job.title}</h2>
-                <Link to={`/collection`} className="go-back-link">Go Back</Link>
+          <div className="row" style={{ margin: '2rem 0 0' }}>
+            {/* tabs */}
+            <ul className="tabs">
+              <li className="tab col s3">
+                <a className="active" href="#description"><strong>Description</strong></a>
+              </li>
+              <li className="tab col s3">
+                <a href="#other"><strong>Other</strong></a>
+              </li>
+            </ul>
+
+            {/* tab content */}
+            <div className="tab-content">
+              <div id="description">
+                <div className='pre-text'>
+                  {job?.description}
+                </div>
               </div>
-              
-              <div className="divider"></div>
-
-              <div className="job-info">
-                <div><strong>Company:</strong> {job.company}</div>
-                <div><strong>Job ID:</strong> {job.id}</div>
-                <div><strong>Created:</strong> <TimesAgo createDate={job.createDate} /></div>
-                <div><strong>Feature Section:</strong> {job.featureDescription}</div>
-              </div>
-
-              {/*<div className="divider"></div> *}
-
-              {/* Buttons */}
-              <div className="job-buttons">
-                <Link to={`/collection/jobs/${job.id}`} className="btn custom-dark-green">Inquiry</Link>
-                <Link to={`/collection/jobs/${job.id}`} className="btn custom-dark-green">Book Service</Link>
+              <div id="other">
+                <div className='pre-text'>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum nemo possimus deserunt voluptates quaerat ipsum quasi exercitationem, obcaecati veritatis corrupti molestias aperiam eligendi incidunt cumque? Culpa adipisci quidem in perferendis ab sint, tempore voluptates consequuntur nisi ipsa! Officiis quod ullam voluptatibus asperiores architecto dolorum atque repellendus sit sint nesciunt facilis maxime, quia id. Quod magnam libero, voluptatum, accusamus, sunt minima officia hic cupiditate praesentium optio odit adipisci a qui deserunt id architecto et ullam. Odio aliquid voluptatibus labore sequi voluptatem ut, recusandae dignissimos adipisci vel culpa, corporis dolore, placeat totam quam harum mollitia soluta! Dolore tempora officiis perspiciatis aliquid corrupti.
+                </div>
               </div>
             </div>
           </div>
-
-          <div className="divider"></div>
-          <div>{job.description}</div>
-        </>
+        </div>
       )}
-    </div>
+    </div >
   );
 };
 

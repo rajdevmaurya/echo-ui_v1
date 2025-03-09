@@ -4,6 +4,7 @@ import API from '../utils/api';
 import { useNavigate, useParams } from 'react-router-dom';
 import Input from '../UI/Input';
 import Button from '../UI/Button';
+import Card from '../UI/Card';
 
 const JobServiceForm = () => {
   const [job, setJob] = useState({
@@ -11,16 +12,12 @@ const JobServiceForm = () => {
     title: '',
     company: '',
     logoUrl: '',
-    lookupType: '',
-    brand: '',
-    featureDescription: '',
     description: '',
     createDate: ''
   });
 
   const navigate = useNavigate();
   const { job_id } = useParams();
-  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     M.updateTextFields();
@@ -60,9 +57,6 @@ const JobServiceForm = () => {
           title: jobData.title,
           company: '',
           logoUrl: '',
-          lookupType: '',
-          brand: '',
-          featureDescription: '',
           description: '',
           createDate: jobData.createDate
         });
@@ -83,7 +77,7 @@ const JobServiceForm = () => {
 
   const redirectJobList = () => {
     navigate('/collection');
-     M.toast({ html: 'Service request has been created successful!', classes: 'green' });
+    M.toast({ html: 'Service request has been created successful!', classes: 'green' });
   };
 
   const cancleRequest = () => {
@@ -96,7 +90,7 @@ const JobServiceForm = () => {
     if (!validateForm()) return;
 
     const method = 'POST';
-    const url = `${API_BASE_URL}/api/orders/jobRequest`;
+    const url = `${process.env.REACT_APP_BASE_URL}/api/orders/jobRequest`;
 
     const storedUser = localStorage.getItem('user');
     const accessToken = JSON.parse(storedUser).accessToken;
@@ -141,24 +135,24 @@ const JobServiceForm = () => {
 
   return (
     <div className="container no-top-gap">
-      <div className="card">
+      <Card>
         <div className="row">
           <ul className="tabs">
             <li className="tab col s6"><a className="active" href="#form">Request Form</a></li>
-            <li className="tab col s6"><a href="#home-card-preview">Order Form</a></li>
+            <li className="tab col s6"><a href="#home-card-preview">Order Request Form</a></li>
           </ul>
 
           <div className="tab-content">
             <form onSubmit={saveJob} id="form">
               {hasJobId &&
-                <Input disabled value={jobData.id} id="id" label='Id' />
+                <Input type="hidden" disabled value={jobData.id} id="id" />
               }
 
               <Input
                 required
                 label='Title'
                 className="validate"
-                value={job.title}
+                value={jobData.title}
                 id="title"
                 onChange={handleChange}
                 fieldErrorMsg='Title cannot be empty'
@@ -181,35 +175,6 @@ const JobServiceForm = () => {
               />
               <Input
                 required
-                className="validate"
-                value={jobData.lookupType}
-                id="lookupType"
-                onChange={handleChange}
-                label='Lookup Type'
-                fieldErrorMsg='Lookup Typecannot be empty'
-              />
-             <Input
-                required
-                className="validate"
-                value={jobData.brand}
-                id="brand"
-                onChange={handleChange}
-                label='Brand'
-                fieldErrorMsg='Brand cannot be empty'
-              />
-
-            <Input
-              required
-              className="materialize-textarea validate"
-              value={jobData.featureDescription}
-              id="featureDescription"
-              onChange={handleChange} 
-              type="textarea"
-              label='Feature Description'
-              fieldErrorMsg='Feature Description Typecannot be empty'
-            />
-              <Input
-                required
                 className="materialize-textarea validate"
                 id="description"
                 onChange={handleChange}
@@ -220,8 +185,8 @@ const JobServiceForm = () => {
               />
 
               <div className="right-align">
-                <Button varient='text' onClick={cancleRequest}>Cancel</Button>
-                <Button type='submit' onClick={saveJob}>Submit</Button>
+                <Button variant='text' handleClick={cancleRequest}>Cancel</Button>
+                <Button type='submit' handleClick={saveJob}>Submit</Button>
               </div>
             </form>
 
@@ -231,7 +196,7 @@ const JobServiceForm = () => {
           </div>
 
         </div>
-      </div>
+      </Card>
     </div >
   );
 };

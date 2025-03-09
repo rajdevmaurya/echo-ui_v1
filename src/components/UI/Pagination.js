@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
+
+import React from 'react';
 import classes from './Pagination.module.css';
 
-class Pagination extends Component {
-  handlePagination = (newPage) => {
-    const { pagination, searchJob, searchText } = this.props;
-    if (!pagination || newPage < 0 || newPage >= pagination.totalPages) return;
+const Pagination = ({ pagination = {}, searchJob, searchText }) => {
+  const { number = 0, totalPages = 1, first, last, size } = pagination;
+
+  if (totalPages <= 1) return null;
+
+  const handlePagination = (newPage) => {
+    if (newPage < 0 || newPage >= totalPages) return;
+    searchJob(searchText, newPage, size);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    searchJob(searchText, newPage, pagination.size);
   };
 
-  renderPaginationNumbers = () => {
-    const { pagination = {} } = this.props;
-    const { number = 0, totalPages = 1 } = pagination;
-    const pages = [];
+  const renderPaginationNumbers = () => {
     const maxVisiblePages = 5;
-
     let startPage = Math.max(0, number - Math.floor(maxVisiblePages / 2));
     let endPage = Math.min(totalPages - 1, startPage + maxVisiblePages - 1);
 
@@ -22,56 +22,53 @@ class Pagination extends Component {
       startPage = Math.max(0, endPage - maxVisiblePages + 1);
     }
 
-    for (let i = startPage; i <= endPage; i++) {
-      pages.push(
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => {
+      const pageNum = startPage + i;
+      return (
         <li
-          key={i}
-          className={`${classes.pageItem} ${i === number ? classes.active : ''}`}
+          key={pageNum}
+          className={`${classes.pageItem} ${pageNum === number ? classes.active : ''}`}
           role="button"
           tabIndex="0"
-          onClick={() => this.handlePagination(i)}
-          onKeyDown={(e) => e.key === 'Enter' && this.handlePagination(i)}
+          onClick={() => handlePagination(pageNum)}
+          onKeyDown={(e) => e.key === 'Enter' && handlePagination(pageNum)}
         >
-          {i + 1}
+          {pageNum + 1}
         </li>
       );
-    }
-
-    return pages;
+    });
   };
 
-  render() {
-    const { pagination = {} } = this.props;
-    const { number = 0, first, last } = pagination;
+  return (
+    <div className={classes.paginationContainer}>
+      <ul className={classes.pagination}>
+        {/* Previous Button */}
+        <li
+          className={`${classes.pageItem} ${first ? classes.disabled : ''}`}
+          role="button"
+          tabIndex={first ? "-1" : "0"}
+          onClick={!first ? () => handlePagination(number - 1) : undefined}
+          onKeyDown={(e) => !first && e.key === 'Enter' && handlePagination(number - 1)}
+        >
+          <i className="material-icons">chevron_left</i>
+        </li>
 
-    return (
-      <div className={classes.paginationContainer}>
-        <ul className={classes.pagination}>
-          <li
-            className={`${classes.pageItem} ${first ? classes.disabled : ''}`}
-            role="button"
-            tabIndex={first ? "-1" : "0"}
-            onClick={!first ? () => this.handlePagination(number - 1) : undefined}
-            onKeyDown={(e) => !first && e.key === 'Enter' && this.handlePagination(number - 1)}
-          >
-            <i className="material-icons">chevron_left</i>
-          </li>
+        {/* Page Numbers */}
+        {renderPaginationNumbers()}
 
-          {this.renderPaginationNumbers()}
-
-          <li
-            className={`${classes.pageItem} ${last ? classes.disabled : ''}`}
-            role="button"
-            tabIndex={last ? "-1" : "0"}
-            onClick={!last ? () => this.handlePagination(number + 1) : undefined}
-            onKeyDown={(e) => !last && e.key === 'Enter' && this.handlePagination(number + 1)}
-          >
-            <i className="material-icons">chevron_right</i>
-          </li>
-        </ul>
-      </div>
-    );
-  }
-}
+        {/* Next Button */}
+        <li
+          className={`${classes.pageItem} ${last ? classes.disabled : ''}`}
+          role="button"
+          tabIndex={last ? "-1" : "0"}
+          onClick={!last ? () => handlePagination(number + 1) : undefined}
+          onKeyDown={(e) => !last && e.key === 'Enter' && handlePagination(number + 1)}
+        >
+          <i className="material-icons">chevron_right</i>
+        </li>
+      </ul>
+    </div>
+  );
+};
 
 export default Pagination;

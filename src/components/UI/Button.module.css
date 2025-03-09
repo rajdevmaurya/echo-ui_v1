@@ -10,6 +10,7 @@
   transition: all 0.1s ease-in-out;
   letter-spacing: 0.1px;
   display: inline-block;
+  text-align: center;
 }
 
 .btn:hover {
@@ -21,6 +22,7 @@
 }
 
 .btn-text,
+.btn-icon-wrapper:focus,
 .btn-text:hover,
 .btn-text:focus {
   background-color: unset;
@@ -29,9 +31,36 @@
 
 .btn-icon-wrapper {
   padding: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 1;
 }
 
-.btn-icon-wrapper,
 .btn-icon-wrapper i {
   line-height: 1;
+  font-size: 1.2rem;
+}
+
+.btn-secondary {
+  background-color: var(--primary-light);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-light-hover);
+}
+
+.btn-text {
+  background-color: transparent;
+}
+
+.btn-secondary-outline {
+  border: 2px solid var(--primary-light);
+  background-color: transparent;
+  color: var(--primary-light);
+}
+
+.btn-secondary-outline:hover {
+  color: var(--white);
+  background-color: var(--primary-light);
 }

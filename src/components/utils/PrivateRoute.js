@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-function PrivateRoute({ children }) {
+function PrivateRoute({ showForUseer, children }) {
   const { getUser, userIsAuthenticated } = useAuth();
   const location = useLocation();
 
@@ -10,6 +10,11 @@ function PrivateRoute({ children }) {
   const role = user?.role;
 
   if (userIsAuthenticated() && role && role !== 'USER') {
+    return children;
+  }
+
+  console.log(role);
+  if (userIsAuthenticated() && role && role !== 'GUEST') {
     return children;
   }
 

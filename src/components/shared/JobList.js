@@ -1,13 +1,28 @@
 import React, { useEffect, useRef, useState } from 'react';
 import M from 'materialize-css';
 import DeleteDialog from './DeleteDialog';
-import NewJobCard from './NewJobCard';
+import JobCard from './JobCard';
 import Pagination from '../UI/Pagination';
 import classes from './JobList.module.css';
+import { useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import OrderCard from './OrderCard';
 
-function JobList({ isCollection, root, jobs = [], hideDescription = true, deleteJob, featured, searchJob, pagination = {}, searchText }) {
+function JobList({
+  root,
+  jobs,
+  deleteJob,
+  featured,
+  searchJob,
+  pagination = {},
+  searchText
+}) {
   const [selectedJob, setSelectedJob] = useState(null);
   const deleteModalRef = useRef(null);
+  const location = useLocation();
+  const { getUser, userIsAuthenticated } = useAuth();
+
+  const isAdmin = userIsAuthenticated && getUser()?.role === 'ADMIN';
 
   useEffect(() => {
     if (deleteModalRef.current) {
@@ -17,8 +32,6 @@ function JobList({ isCollection, root, jobs = [], hideDescription = true, delete
 
   const showDialog = (job) => {
     setSelectedJob(job);
-
-    // Reinitialize modal before opening
     const modalElement = document.getElementById('deleteModal');
     if (modalElement) {
       const modalInstance = M.Modal.getInstance(modalElement) || M.Modal.init(modalElement);
@@ -29,37 +42,37 @@ function JobList({ isCollection, root, jobs = [], hideDescription = true, delete
   const path = root ? `/${root}/jobs/` : '/jobs/';
   const commonAttr = {
     jobUrl: path,
-    hideDescription,
     deleteJob,
     showDialog
   };
 
-  const collectionList = (Array.isArray(jobs) ? jobs : []).map(job => (
-    <div className="collection-item" key={job.id}>
-      <NewJobCard job={job} isCollection="true" {...commonAttr} />
-    </div>
-  ));
+  if (jobs.length === 0) {
+    return (
+      <div className="center card" style={{ padding: '2rem' }}>
+        <h6 className="uppercase">No jobs found</h6>
+      </div>
+    );
+  }
 
   return (
     <React.Fragment>
-      {isCollection ? (
-        <div className='collection'>{collectionList}</div>
-      ) : (
-        <div className={`${classes['cards-wrapper']} ${featured ? classes['featured-cards'] : ''}`}>
-          {(Array.isArray(jobs) ? jobs : []).map((job) => (
-            <NewJobCard job={job} key={job.id} {...commonAttr} />
-          ))}
-        </div>
-      )}
+      <div className={`${classes['cards-wrapper']} ${featured ? classes['featured-cards'] : ''}`}>
+        {jobs.map((job) => {
+          return isAdmin && location.pathname === '/my-orders'
+            ?
+            <OrderCard job={job} key={job.id} />
+            :
+            <JobCard job={job} key={job.id} {...commonAttr} />;
+        })}
+      </div>
 
-      {pagination?.totalPages > 1 && (
-        <Pagination
-          className="center"
-          pagination={pagination}
-          searchText={searchText}
-          searchJob={searchJob}
-        />
-      )}
+      {/* Updated Pagination */}
+      <Pagination
+        className="center"
+        pagination={pagination}
+        searchText={searchText}
+        searchJob={searchJob}
+      />
 
       {/* Delete Dialog */}
       {deleteJob && <DeleteDialog job={selectedJob} deleteJob={deleteJob} />}

@@ -4,13 +4,6 @@ import classes from './ImageScroller.module.css';
 const timeInterval = 3000;
 const ImageScroller = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 768);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -57,15 +50,28 @@ const ImageScroller = ({ images }) => {
         ))}
       </div>
 
-      {/* Left and Right Buttons - Only visible on desktop */}
-      {!isMobile && (
-        <div className={`${classes['image-slider-nav']}`}>
-          <div className={`${classes['container']} container`}>
-            <button onClick={goLeft} className={`${classes['prev-button']}`}>&#10094;</button>
-            <button onClick={goRight} className={`${classes['next-button']}`}>&#10095;</button>
-          </div>
-        </div>
-      )}
+      {/* Left and Right Buttons with creative look */}
+      <div className={`${classes['image-slider-nav']}`}>
+        <div className={`${classes['container']} container`}>
+          <button onClick={goLeft} className={`${classes['prev-button']}`}>&#10094;</button>
+          <button onClick={goRight} className={`${classes['next-button']}`}>&#10095;</button>
+        </div >
+      </div >
+
+      {/* Image Numbers */}
+      {/* <div className={`${classes['image-slider-numbers']}`}>
+        {
+          images.map((_, index) => (
+            <span
+              key={index}
+              className={`${classes['image-slider-number']} ${index === currentIndex ? "active" : ""}`}
+              onClick={() => selectImage(index)}
+            >
+              {index + 1}
+            </span>
+          ))
+        }
+      </div> */}
     </section>
   );
 };

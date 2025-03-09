@@ -38,7 +38,7 @@ function DeleteDialog({ job, deleteJob }) {
         </p>
       </div>
       <div className="modal-footer">
-        <Button varient="text" className="modal-close">No</Button>
+        <Button varient="text" className="modal-close" style={{ backgroundColor: 'transparent', color: '#000' }}>No</Button>
         <Button className="modal-close red darken-3" handleClick={handleDelete}>Yes</Button>
       </div>
     </div>

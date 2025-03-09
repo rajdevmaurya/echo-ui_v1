@@ -1,6 +1,8 @@
 /* Global styles and variables */
 :root {
   --primary-color: #00372c;
+  --primary-light: #50b19e;
+  --primary-light-hover: #36776b;
   --primary-dark: #022a22;
   --secondary-color: #022a22;
 
@@ -15,6 +17,7 @@
   --white: #fff;
   --black: #000;
   --red: #c62828;
+  --red-2: #ff7373;
 
   --card-padding: 1.25rem;
   --box-shadow: 0 5px 5px 0 rgb(0 0 0 / 12%);
@@ -28,13 +31,16 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   background-color: var(--gray-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
+}
+
+body:has(main > .bg-transparent) {
+  background-color: transparent;
 }
 
 #root {
@@ -46,8 +52,7 @@ body {
 
 /* typography */
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 h1 {
@@ -55,7 +60,9 @@ h1 {
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 2rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
   color: var(--text-color);
 }
 
@@ -75,7 +82,7 @@ a {
 
 .link,
 a {
-  color: var(--primary-color);
+  color: var(--primary-light-hover);
   text-decoration: none;
 }
 
@@ -92,6 +99,11 @@ button {
   border: none;
 }
 
+.btn-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+
 .container {
   width: 100%;
   padding-left: 1rem;
@@ -104,8 +116,9 @@ button {
 }
 
 main {
-  padding-top: 64px;
-  padding-bottom: 80px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: auto;
 }
 
 main:has(> .no-top-gap) {
@@ -188,6 +201,27 @@ main:has(> .no-bottom-gap) {
   li.dropdown-expanded .dropdown-content {
     max-height: max-content;
   }
+
+  body:has( .job-details-wrapper .btn-wrapper) {
+    padding-bottom: 80px;
+  }
+
+  .job-details-wrapper .btn-wrapper {
+    position: fixed;
+    z-index: 9;
+    bottom: 0;
+    background-color: var(--white);
+    width: 100%;
+    left: 0;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: 0 -4px 4px rgb(0 0 0 / 12%);
+  }
+
+  .job-details-wrapper .common-img-header{
+    grid-template-columns: unset;
+  }
 }
 
 /* primary nav */
@@ -252,12 +286,14 @@ nav .primary-menu li li a:hover,
 
 .common-img-header {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 35% auto;
   gap: 24px;
 }
 
 .common-img-header img {
-  max-height: 100px;
+  max-height: 400px;
+  display: block;
+  margin: auto;
 }
 
 /* truncate */
@@ -271,13 +307,31 @@ nav .primary-menu li li a:hover,
   overflow: hidden;
 }
 
+.two-lines-truncate {
+  white-space: break-spaces;
+  display: block;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 @supports not (-webkit-line-clamp: 1) {
-  .truncate {
+  .truncate,
+  .two-lines-truncate {
     display: block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
+}
+
+.pre-text {
+  font-family: inherit;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .uppercase {
@@ -311,6 +365,19 @@ textarea.validate.invalid:not(.browser-default) {
 
 .helper-text:after {
   font-size: 0.9rem !important;
+}
+
+input:-webkit-autofill {
+  background-color: transparent !important;
+  color: var(--text-color) !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s !important;
+  background-color: transparent !important;
 }
 
 /* ---------------------------- */
@@ -352,10 +419,6 @@ textarea.validate.invalid:not(.browser-default) {
   padding: 0;
 }
 
-.tab-content .collection {
-  margin-top: 0;
-}
-
 .tabs .indicator {
   background-color: var(--primary-color);
 } /*Color of underline*/
@@ -377,16 +440,16 @@ textarea.validate.invalid:not(.browser-default) {
 }
 
 /* media queries */
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 992px) {
   .row .col.s3 {
     width: 50%;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .row .col.s3 {
     width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 }

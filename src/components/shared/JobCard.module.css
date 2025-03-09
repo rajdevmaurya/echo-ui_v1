@@ -2,6 +2,19 @@
   box-shadow: none;
   overflow: hidden;
   background-color: var(--white);
+  border: 1px solid var(--border-color);
+}
+
+.job-card:hover {
+  box-shadow: var(--box-shadow);
+}
+
+.job-card.featured-card {
+  max-width: 50%;
+}
+
+.job-card > a {
+  padding: var(--card-padding);
 }
 
 .job-card h2,
@@ -9,60 +22,63 @@
   margin: 0;
 }
 
-.job-card h3 {
-  font-weight: 500;
-}
-
-.job-card.featured-card {
-  max-width: 50%;
-}
-
-.job-card:not(.collection-card) {
-  padding-inline: var(--card-padding);
-  border: 1px solid var(--border-color);
-}
-
-.job-card:not(.collection-card):hover {
-  box-shadow: var(--box-shadow);
-}
-
-.job-card-header,
-.job-card-body {
-  padding-block: var(--card-padding);
-}
-
-.job-card-header .job-card-img img {
-  aspect-ratio: 16 / 9;
-  object-fit: contain;
-  object-position: center left;
-  width: 100%;
-  max-height: 60px;
-  max-width: 200px;
-  display: block;
-}
-
-.job-card-header .job-card-content {
-  text-align: right;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.job-card-header .job-card-content,
-.job-card .job-card-content h2 {
+.job-card h2 {
   margin-bottom: 5px;
   font-size: 1rem;
   line-height: inherit;
 }
 
-.job-card-body .card-description {
-  margin-top: var(--card-padding);
+.job-card h3 {
+  font-weight: 500;
 }
 
-.job-card.collection-card {
+.job-card .job-card-img img {
+  object-fit: contain;
+  object-position: center;
+  width: 100%;
+  display: block;
+  transition: all 0.2s ease-in-out;
+  transform: scale(0.9);
+}
+
+.job-card .job-card-img:hover img {
+  transform: scale(1);
+}
+
+.admin-card .job-card-header {
+  display: grid;
+  align-items: flex-start;
+  gap: var(--card-padding);
+  grid-template-columns: auto 48px;
+}
+
+.job-card-content {
+  font-size: 1rem;
+  line-height: inherit;
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+}
+
+@media only screen and (min-width: 601px) {
+  .job-card-content {
+    grid-template-columns: 180px auto;
+  }
+}
+
+/* .job-card.collection-card {
   padding: 0;
   box-shadow: none;
+  display: grid;
+  grid-template-columns: auto 48px;
+  gap: 0.5rem;
+  align-items: flex-start;
+  justify-items: flex-end;
+}
+
+.job-card.collection-card a {
+  width: 100%;
+  display: block;
 }
 
 .job-card.collection-card .job-card-header,
@@ -77,4 +93,4 @@
 
 .job-card.collection-card .job-card-header {
   padding-bottom: calc(var(--card-padding) / 2);
-}
+} */
