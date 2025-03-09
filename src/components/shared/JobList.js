@@ -49,7 +49,7 @@ function JobList({
   if (jobs.length === 0) {
     return (
       <div className="center card" style={{ padding: '2rem' }}>
-        <h6 className="uppercase">No jobs found</h6>
+        <h6 className="uppercase">No record(s) found</h6>
       </div>
     );
   }
