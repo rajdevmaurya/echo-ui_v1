@@ -7,6 +7,7 @@ const navigationLinks = [
       { path: "/collection/dental-equipments", label: "Dental Equipments" },
       { path: "/collection/x-ray", label: "X-Ray" },
       { path: "/collection/ultrasound-machines", label: "Ultrasound Machines" },
+      { path: "/collection/oxygen-machines", label: "Oxygen Machines" },
     ]
   },
   {
@@ -18,15 +19,18 @@ const navigationLinks = [
       { path: "/collection/sports-medicine", label: "Sports Medicine" },
     ]
   },
-  { path: "/collection/trolley-mounting", label: "Trolley & Mounting", roles: ["GUEST", "USER", "STAFF", "ADMIN"] },
-  // {
-  //   path: "/staff", label: "Staff", roles: ["STAFF", "ADMIN"],
-  //   dropdown: [
-  //     { path: "/staff", label: "Update Details" },
-  //     { path: "/", label: "My Pending Request" },
-  //     { path: "/", label: "Closed Request" },
-  //   ]
-  // },
+  { path: "/collection/trolley-mounting", label: "Trolley & Mounting", roles: ["GUEST", "USER", "STAFF", "ADMIN"],
+
+    dropdown: [
+      { path: "/collection/all-in-one-computer-trolley", label: "All in one Computer Trolley" },
+      { path: "/collection/medical-furniture", label: "Medical Furniture" },
+      { path: "/collection/medical-trolley", label: "Medical Trolley" },
+    ]
+  },
+  {
+    path: "/collection/medicines", label: "Medicines",
+    roles: ["GUEST", "USER", "STAFF", "ADMIN"],
+  },
   {
     path: "/admin", label: "Admin",
     roles: ["ADMIN"],
@@ -34,10 +38,6 @@ const navigationLinks = [
       { path: "/admin", label: "Add/Update Details" },
       { path: "/my-orders", label: "All Service Request" },
     ]
-  },
-  {
-    path: "/collection", label: "Sales & Services",
-    roles: ["GUEST", "USER", "STAFF", "ADMIN"],
   },
 ];
 
