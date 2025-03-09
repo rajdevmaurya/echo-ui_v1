@@ -1,6 +1,6 @@
 const prod = {
   url: {
-    API_BASE_URL: 'https://myapp.herokuapp.com',
+    API_BASE_URL: process.env.REACT_APP_BASE_URL,
   }
 };
 
