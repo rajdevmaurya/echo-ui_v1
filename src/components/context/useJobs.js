@@ -80,7 +80,7 @@ const useJobs = (category) => {
   }, [loadJobs]);
 
   const getMyOrders = useCallback((page = pageDefaultNumber, size = pageDefaultSize) => {
-    const url = isAdmin ? `orders?page=${page}&size=${size}` : "orders/myorder/1";
+    //const url = isAdmin ? `orders?page=${page}&size=${size}` : "orders/myorder/1";
     if(isAdmin){
     loadJobs(`orders?page=${page}&size=${size}`, page);
   }else{
