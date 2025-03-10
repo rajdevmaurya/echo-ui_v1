@@ -23,7 +23,7 @@ const useJobs = (category) => {
   const location = useLocation();
   const extractedCategory = category || location.pathname.split("/").pop();
   const isAdmin = userIsAuthenticated && getUser()?.role === 'ADMIN';
-  const userId = userIsAuthenticated && getUser()?.id;
+  //const userId = userIsAuthenticated && getUser()?.id;
 
   const collectionCategories = navigationLinks
     .flatMap((link) => (link.dropdown ? link.dropdown.map((item) => item.path) : []))
