@@ -23,6 +23,7 @@ const useJobs = (category) => {
   const location = useLocation();
   const extractedCategory = category || location.pathname.split("/").pop();
   const isAdmin = userIsAuthenticated && getUser()?.role === 'ADMIN';
+  const userId = userIsAuthenticated && getUser()?.id;
 
   const collectionCategories = navigationLinks
     .flatMap((link) => (link.dropdown ? link.dropdown.map((item) => item.path) : []))
@@ -78,9 +79,15 @@ const useJobs = (category) => {
     loadJobs(`jobs/collection/${category}?page=${page}&size=${size}`, page);
   }, [loadJobs]);
 
-  const getMyOrders = useCallback(() => {
-    const url = isAdmin ? `orders/myorder/1` : "jobs/collection/X-Ray?page=0&size=1";
-    loadJobs(url, 0);
+  const getMyOrders = useCallback((page = pageDefaultNumber, size = pageDefaultSize) => {
+    const url = isAdmin ? `orders?page=${page}&size=${size}` : "orders/myorder/1";
+    if(isAdmin){
+    loadJobs(`orders?page=${page}&size=${size}`, page);
+  }else{
+    if(userId){
+    loadJobs(`orders/myorder/${userId}?page=${page}&size=${size}`, page);
+    }
+  }
   }, [isAdmin, loadJobs]);
 
   const searchJob = useCallback((text, page = pageDefaultNumber, size = pageDefaultSize) => {
@@ -89,7 +96,7 @@ const useJobs = (category) => {
     if (isValidCategory) {
       text.trim() ? getJobsWithText(text, page, size) : getJobWithCategory(extractedCategory, page, size);
     } else if (location.pathname === "/my-orders") {
-      text.trim() ? getJobsWithText(text, page, size) : getMyOrders();
+      text.trim() ? getJobsWithText(text, page, size) : getMyOrders(page, size);
     } else {
       text.trim() ? getJobsWithText(text, page, size) : getAllJobs(page, size);
     }
