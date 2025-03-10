@@ -83,11 +83,11 @@ const useJobs = (category) => {
     //const url = isAdmin ? `orders?page=${page}&size=${size}` : "orders/myorder/1";
     if(isAdmin){
     loadJobs(`orders?page=${page}&size=${size}`, page);
-  }else{
-    if(userId){
-    loadJobs(`orders/myorder/${userId}?page=${page}&size=${size}`, page);
-    }
-  }
+  }//else{
+   // if(userId){
+    //loadJobs(`orders/myorder/${userId}?page=${page}&size=${size}`, page);
+   // }
+  //}
   }, [isAdmin, loadJobs]);
 
   const searchJob = useCallback((text, page = pageDefaultNumber, size = pageDefaultSize) => {
