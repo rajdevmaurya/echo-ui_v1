@@ -56,7 +56,7 @@ const JobServiceForm = () => {
           id: jobData.id,
           title: jobData.title,
           company: '',
-          logoUrl: '',
+          logoUrl: jobData.logoUrl,
           description: '',
           createDate: jobData.createDate
         });
@@ -145,7 +145,8 @@ const JobServiceForm = () => {
           <div className="tab-content">
             <form onSubmit={saveJob} id="form">
               {hasJobId &&
-                <Input type="hidden" disabled value={jobData.id} id="id" />
+                <Input type="hidden" disabled value={jobData.id} id="id" /> &&
+                <Input type="hidden" disabled value={jobData.logoUrl} id="logoUrl" />
               }
 
               <Input
@@ -167,8 +168,8 @@ const JobServiceForm = () => {
                 fieldErrorMsg='Company cannot be empty'
               />
               <Input
-                value={jobData.logoUrl}
-                id="logoUrl"
+                value={jobData.location}
+                id="location"
                 type="text"
                 onChange={handleChange}
                 label='Address/Location'
@@ -180,7 +181,7 @@ const JobServiceForm = () => {
                 onChange={handleChange}
                 value={jobData.description}
                 type="textarea"
-                label='Enter Service Request Summary'
+                label='Enter Summary Details'
                 fieldErrorMsg='Enter Service Request Summary'
               />
 

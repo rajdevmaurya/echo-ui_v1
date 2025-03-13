@@ -64,11 +64,11 @@ const JobDetails = () => {
           <div className="row" style={{ margin: '2rem 0 0' }}>
             {/* tabs */}
             <ul className="tabs">
-              <li className="tab col s3">
+              <li className="tab col s2">
                 <a className="active" href="#description"><strong>Description</strong></a>
               </li>
-              <li className="tab col s3">
-                <a href="#other"><strong>Other</strong></a>
+              <li className="tab col s2">
+                <a href="#other"><strong>Service Details</strong></a>
               </li>
             </ul>
 

@@ -13,7 +13,7 @@ function OrderCard({ job }) {
         {/* Job Card Body */}
         <div className={classes["job-card-body"]}>
           <h2 className="black-text">{job?.title}</h2>
-          <p>Brand: <strong>{job?.brand}</strong></p>
+          <p>Brand: <strong>{job?.company}</strong></p>
         </div>
       </div>
     </div>
