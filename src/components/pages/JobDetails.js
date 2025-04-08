@@ -77,7 +77,7 @@ const JobDetails = () => {
               <div className='btn-wrapper'>
                 <Button href={`/collection/jobs/${job?.id}`} variant="link-secondary-outline">Inquiry</Button>
                 {/* Changed from href to handleClick for the Book Service button */}
-                <Button handleClick={handleAddToCart} variant="link-secondary">Book Service</Button>
+                <Button handleClick={handleAddToCart} variant="link-secondary">Book Now</Button>
               </div>
               <div className="divider" style={{ margin: '2rem 0' }}></div>
               {job?.posttype && <p>Categories: <Link to={`/collection/${job?.posttype.toLowerCase()}`}><strong>{job?.posttype}</strong></Link></p>}

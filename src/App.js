@@ -17,6 +17,7 @@ import Collection from './components/pages/Collection';
 import CommonLayout from './components/pages/Layouts';
 import MyOrders from './components/pages/MyOrders';
 import SearchResult from './components/pages/SearchResult';
+import Checkout from './components/pages/Checkout';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
               <Route path="/search" element={<SearchResult />} />
               <Route path="/my-orders" element={<PrivateRoute showForUseer={true}><MyOrders /></PrivateRoute>} />
               <Route path="/cart" element={<Cart />} /> {/* Add Cart route */}
+              <Route path="/checkout" element={<Checkout />} />
             </Route>
 
             {/* Collection Routes */}
