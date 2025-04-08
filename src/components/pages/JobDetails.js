@@ -5,11 +5,13 @@ import Logo from '../shared/Logo';
 import API from '../utils/api';
 import Button from '../UI/Button';
 import { Link } from "react-router-dom";
+import { useCart } from '../context/CartContext'; // Import the cart context
 
 const JobDetails = () => {
   const { job_id } = useParams(); // Access job_id from the URL
   const [job, setJob] = useState(null);
   const navigate = useNavigate(); // Hook for navigation
+  const { addToCart } = useCart(); // Get the addToCart function from context
 
   useEffect(() => {
     const fetchJob = async () => {
@@ -32,6 +34,28 @@ const JobDetails = () => {
     }, 100);
   }, [job]);
 
+  // Handler for adding job to cart
+  const handleAddToCart = () => {
+    if (job) {
+      // Create a cart item from the job
+      const cartItem = {
+        id: job.id,
+        title: job.title,
+        company: job.company,
+        brand: job.brand,
+        price: job.price || 0, // Make sure you have a price field in your job data or use a default value
+        logoUrl: job.logoUrl,
+        type: 'service' // To identify item type in cart
+      };
+      
+      // Add to cart
+      addToCart(cartItem);
+      
+      // Show success message
+      M.toast({ html: `${job.title} has been added to your cart!`, classes: 'rounded green' });
+    }
+  };
+
   return (
     <div className="container job-details-wrapper">
       {job && (
@@ -52,14 +76,14 @@ const JobDetails = () => {
               <div className="divider hide-on-med-and-down" style={{ margin: '2rem 0' }}></div>
               <div className='btn-wrapper'>
                 <Button href={`/collection/jobs/${job?.id}`} variant="link-secondary-outline">Inquiry</Button>
-                <Button href={`/collection/jobs/${job?.id}`} variant="link-secondary">Book Service</Button>
+                {/* Changed from href to handleClick for the Book Service button */}
+                <Button handleClick={handleAddToCart} variant="link-secondary">Book Service</Button>
               </div>
               <div className="divider" style={{ margin: '2rem 0' }}></div>
               {job?.posttype && <p>Categories: <Link to={`/collection/${job?.posttype.toLowerCase()}`}><strong>{job?.posttype}</strong></Link></p>}
               <p style={{ marginTop: '0.5rem' }}>Company: <strong>{job?.company}</strong></p>
             </div>
           </div>
-          {/* <div className="divider" style={{ margin: '2rem 0' }}></div> */}
 
           <div className="row" style={{ margin: '2rem 0 0' }}>
             {/* tabs */}
@@ -88,7 +112,7 @@ const JobDetails = () => {
           </div>
         </div>
       )}
-    </div >
+    </div>
   );
 };
 

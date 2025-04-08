@@ -5,6 +5,7 @@ import { JobContext } from '../context/JobContext';
 import M from 'materialize-css';
 import TopHeader from './TopHeader';
 import Search from '../UI/Search';
+import CartIcon from '../UI/CartIcon'; // Import CartIcon component
 import SiteLogo from '../../assets/echo_logo.png';
 import classes from './Header.module.css';
 import navigationLinks from './helper/navigationLinks';
@@ -133,13 +134,14 @@ const Header = () => {
               <Link to="/" className={`${classes['brand-logo']} brand-logo`}>
                 <img src={SiteLogo} alt='Echo Health care' />
                 <span className="sr-only">Echo Health care</span>
-              </Link>
+              </Link>  
               <Search searchJob={searchJob} key={location.pathname} />
               {/* Mobile Menu Trigger */}
+              <CartIcon />
               <a href="#!" data-target="mobile-menu" className="sidenav-trigger hide-on-large-only">
                 <i className="material-icons">menu</i>
               </a>
-            </div>
+            </div>          
           </div>
 
           {/* Navigation Links */}
@@ -147,6 +149,7 @@ const Header = () => {
             <div className={`${classes['container']} container`}>
               <ul className="hide-on-med-and-down primary-menu">
                 {generateNavList("desktop")}
+                
               </ul>
               <UserDropdown user={user} authenticated={authenticated} onLoginLogout={handleLoginLogout} />
             </div>
@@ -164,6 +167,7 @@ const Header = () => {
         </li>
         <li className="greeting">Hi {username}</li>
         {generateNavList("mobile")}
+        <li><Link to="/cart"><i className="material-icons left">shopping_cart</i> Cart</Link></li> {/* Add Cart link to mobile menu */}
         <li>{loginLogoutLink}</li>
       </ul>
     </React.Fragment>

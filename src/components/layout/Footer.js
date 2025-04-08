@@ -11,13 +11,13 @@ const Footer = () => {
             <h4>Contact Details</h4>
             <ul>
               <li>
-              Board: +91-811111111
+              Board: 8076558507
               </li>
               <li>
-              Business: +91-8822222
+              Business: 8076558507
               </li>
               <li>
-              Phone: +91-911111111
+              Phone: 8076558507
               </li>
               <li>
                 <Link to='/'></Link>

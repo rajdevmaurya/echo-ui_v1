@@ -14,9 +14,12 @@ const Button = ({ variant = 'button', handleClick = () => { }, children, classNa
   }
   if (variant === 'link-secondary') {
     return (
-      <Link className={`${classes.btn} ${classes['btn-secondary']} ${className}`}
-        to={href}
-        {...rest}>
+      <Link 
+        className={`${classes.btn} ${classes['btn-secondary']} ${className}`}
+        to={href || '#'}
+        onClick={handleClick}
+        {...rest}
+      >
         {children}
       </Link>
     );
