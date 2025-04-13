@@ -16,7 +16,9 @@ const JobServiceForm = () => {
     brand: '',
     featureDescription: '',
     description: '',
-    createDate: ''
+    createDate: '',
+    price: '', // Added price field
+    qty: '' // Added qty field
   });
   const navigate = useNavigate();
   const { job_id } = useParams();
@@ -58,7 +60,9 @@ const JobServiceForm = () => {
             brand: jobData.brand,
             featureDescription: jobData.featureDescription,
             description: jobData.description,
-            createDate: jobData.createDate
+            createDate: jobData.createDate,
+            price: jobData.price || '', // Handle price from API
+            qty: jobData.qty || '' // Handle qty from API
           });
         } catch (error) {
           console.error(error);
@@ -176,6 +180,35 @@ const JobServiceForm = () => {
         onChange={handleChange}
         label='Logo Url'
       />
+      
+      {/* Price and Qty fields added in a responsive row */}
+      <div className="row">
+        <div className="col s12 m6">
+          <Input
+            required
+            className="validate"
+            type="number"
+            value={job.price}
+            id="price"
+            onChange={handleChange}
+            label='Price ($)'
+            fieldErrorMsg='Price cannot be empty'
+          />
+        </div>
+        <div className="col s12 m6">
+          <Input
+            required
+            className="validate"
+            type="number"
+            value={job.qty}
+            id="qty"
+            onChange={handleChange}
+            label='Quantity'
+            fieldErrorMsg='Quantity cannot be empty'
+          />
+        </div>
+      </div>
+      
       <Input
         required
         className="validate"
@@ -183,7 +216,7 @@ const JobServiceForm = () => {
         id="lookupType"
         onChange={handleChange}
         label='Lookup Type'
-        fieldErrorMsg='Lookup Typecannot be empty'
+        fieldErrorMsg='Lookup Type cannot be empty'
       />
       <Input
         required
@@ -192,17 +225,17 @@ const JobServiceForm = () => {
         id="brand"
         onChange={handleChange}
         label='Brand'
-        fieldErrorMsg='Brand Typecannot be empty'
+        fieldErrorMsg='Brand Type cannot be empty'
       />
      <Input
         required
         className="validate"
-         type='textarea'
+        type='textarea'
         value={job.featureDescription}
         id="featureDescription"
         onChange={handleChange}
         label='Feature Description'
-        fieldErrorMsg='Feature Description Typecannot be empty'
+        fieldErrorMsg='Feature Description Type cannot be empty'
       />
       <Input
         required
