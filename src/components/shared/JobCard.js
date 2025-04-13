@@ -29,8 +29,9 @@ function JobCard({ job, jobUrl, showDialog, isFeatured = false, deleteJob }) {
           <div className={classes["job-card-header"]}>
             <div>
               <h2 className="black-text">{job?.title}</h2>
-              <p>Brand: <strong>{job?.brand}</strong></p>
+              <p>Brand: <strong>{job?.brand}  </strong> ,  Price: <strong>{job?.price}</strong> </p>
             </div>
+            
             {/* Delete button */}
             {deleteJob && (
               <Button

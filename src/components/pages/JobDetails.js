@@ -67,9 +67,11 @@ const JobDetails = () => {
             <div><Logo logoUrl={job?.logoUrl} alt={job?.company} /></div>
             <div>
               <h2 style={{ fontSize: '20px', fontWeight: '500', marginTop: 0, color: 'inherit', marginBottom: '0.75rem' }}>{job?.title}</h2>
-              <p>Brand: <strong>{job?.brand}</strong></p>
+              <p>Brand: <strong>{job?.brand} </strong>, Price: <strong>{job?.price}</strong>, Status: <strong>In stock</strong> </p>
               {/* <p><TimesAgo createDate={job?.createDate} /></p> */}
               <div className="divider" style={{ margin: '1rem 0' }}></div>
+               <p></p>
+               <p></p>
               <div className='pre-text' style={{ marginBottom: '1rem' }}>
                 {job?.featureDescription}
               </div>
