@@ -36,13 +36,14 @@ const Collection = () => {
   return (
     <div className="container collection-wrapper">
       <div>
-      <span style={{ fontWeight: "bold", color: "darkgreen" }}>
+        <span style={{ fontWeight: "bold", color: "darkgreen" }}>
           {category ? category.replace("-", " ").replace(/\b\w/g, char => char.toUpperCase())
             : "All Collections"}
         </span>
       </div>
       <JobList
         jobs={jobs}
+        featured={true} // here true can remove Assuming you want to show featured jobs
         pagination={pagination}
         searchText={searchText}
         searchJob={searchJob}
