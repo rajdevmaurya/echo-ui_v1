@@ -35,11 +35,12 @@ const Collection = () => {
 
   return (
     <div className="container collection-wrapper">
-      <h2>
-        {category ? category.replace("-", " ").replace(/\b\w/g, char => char.toUpperCase())
-          : "All Collections"}
-      </h2>
-
+      <div>
+      <span style={{ fontWeight: "bold", color: "darkgreen" }}>
+          {category ? category.replace("-", " ").replace(/\b\w/g, char => char.toUpperCase())
+            : "All Collections"}
+        </span>
+      </div>
       <JobList
         jobs={jobs}
         pagination={pagination}

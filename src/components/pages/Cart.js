@@ -8,7 +8,8 @@ const Cart = () => {
   
   return (
     <div className="container">
-      <h2 className="hide-on-small-only">Your Cart</h2>
+      <span style={{ fontWeight: "bold", color: "darkgreen" }}>Your Cart </span>
+
       <h4 className="hide-on-med-and-up center-align">Your Cart</h4>
       
       {cart.length === 0 ? (
