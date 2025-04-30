@@ -53,7 +53,7 @@ const JobDetails = () => {
       addToCart(cartItem);
       
       // Show success message
-      M.toast({ html: `${job.title} has been added to your cart!`, classes: 'rounded green' });
+      M.toast({ html: `Product has been added to your cart!`, classes: 'rounded green' });
     }
   };
 
@@ -80,7 +80,7 @@ const JobDetails = () => {
         addToCart(cartItem);
         
         // Show message that item was added
-        M.toast({ html: `${job.title} has been added to your cart!`, classes: 'rounded green' });
+        M.toast({ html: `Product has been added to your cart!`, classes: 'rounded green' });
       } else {
         // Item already in cart, just show a message that we're proceeding to checkout
         M.toast({ html: `Proceeding to checkout...`, classes: 'rounded blue' });
