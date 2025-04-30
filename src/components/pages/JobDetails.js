@@ -11,7 +11,7 @@ const JobDetails = () => {
   const { job_id } = useParams(); // Access job_id from the URL
   const [job, setJob] = useState(null);
   const navigate = useNavigate(); // Hook for navigation
-  const { addToCart } = useCart(); // Get the addToCart function from context
+  const { cart, addToCart } = useCart(); // Get cart and addToCart function from context
 
   useEffect(() => {
     const fetchJob = async () => {
@@ -57,26 +57,34 @@ const JobDetails = () => {
     }
   };
 
-  // Handler for Book Now (add to cart and redirect to checkout)
+  // Handler for Book Now (check if in cart, then redirect to checkout)
   const handleBookNow = () => {
     if (job) {
-      // Create a cart item from the job (same as in handleAddToCart)
-      const cartItem = {
-        id: job.id,
-        title: job.title,
-        company: job.company,
-        brand: job.brand,
-        price: job.price || 0,
-        logoUrl: job.logoUrl,
-        type: 'service',
-        quantity: 1
-      };
+      // Check if this job is already in the cart
+      const itemInCart = cart.find(item => item.id === job.id);
       
-      // Add to cart
-      addToCart(cartItem);
-      
-      // Show brief success message before redirecting
-      M.toast({ html: `${job.title} has been added to your cart!`, classes: 'rounded green' });
+      if (!itemInCart) {
+        // Item not in cart, so add it
+        const cartItem = {
+          id: job.id,
+          title: job.title,
+          company: job.company,
+          brand: job.brand,
+          price: job.price || 0,
+          logoUrl: job.logoUrl,
+          type: 'service',
+          quantity: 1
+        };
+        
+        // Add to cart
+        addToCart(cartItem);
+        
+        // Show message that item was added
+        M.toast({ html: `${job.title} has been added to your cart!`, classes: 'rounded green' });
+      } else {
+        // Item already in cart, just show a message that we're proceeding to checkout
+        M.toast({ html: `Proceeding to checkout...`, classes: 'rounded blue' });
+      }
       
       // Short timeout to allow toast to be visible before navigation
       setTimeout(() => {
@@ -107,7 +115,7 @@ const JobDetails = () => {
               </div>
               <div className="divider hide-on-med-and-down" style={{ margin: '2rem 0' }}></div>
               <div className='btn-wrapper'>
-               {/*  <Button href={`/collection/jobs/${job?.id}`} variant="link-secondary-outline">Inquiry</Button>*/}
+                 {/*<Button href={`/collection/jobs/${job?.id}`} variant="link-secondary-outline">Inquiry</Button>*/}
                 <Button handleClick={handleAddToCart} variant="link-secondary-outline">Add to Cart</Button>
                 <Button handleClick={handleBookNow} variant="link-secondary">Book Now</Button>
               </div>
