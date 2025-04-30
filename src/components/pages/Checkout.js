@@ -359,7 +359,7 @@ const Checkout = () => {
                     <Button 
                       type="submit" 
                       disabled={isLoading}
-                      className="waves-effect waves-light"
+                      className="waves-effect waves-light btn-large full-width"
                     >
                       {isLoading ? (
                         <span>
@@ -368,7 +368,6 @@ const Checkout = () => {
                         </span>
                       ) : (
                         <span>
-                          <i className="material-icons left">shopping_cart</i>
                           Place Order
                         </span>
                       )}
@@ -466,6 +465,16 @@ const Checkout = () => {
         .card-panel.green-text i {
           display: block;
           margin-bottom: 10px;
+        }
+        
+        /* Full width button styling */
+        .full-width {
+          width: 100%;
+          display: block;
+          text-align: center;
+          padding: 0 1rem;
+          height: 54px;
+          line-height: 54px;
         }
         
         /* Responsive adjustments */

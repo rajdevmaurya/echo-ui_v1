@@ -27,7 +27,8 @@ const Button = ({ variant = 'button', handleClick = () => { }, children, classNa
   if (variant === 'link-secondary-outline') {
     return (
       <Link className={`${classes.btn} ${classes['btn-secondary-outline']} ${className}`}
-        to={href}
+      to={href || '#'}
+      onClick={handleClick}
         {...rest}>
         {children}
       </Link>

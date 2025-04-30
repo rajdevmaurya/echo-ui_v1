@@ -45,7 +45,8 @@ const JobDetails = () => {
         brand: job.brand,
         price: job.price || 0, // Make sure you have a price field in your job data or use a default value
         logoUrl: job.logoUrl,
-        type: 'service' // To identify item type in cart
+        type: 'service', // To identify item type in cart
+        quantity: 1 // Add default quantity
       };
       
       // Add to cart
@@ -53,6 +54,35 @@ const JobDetails = () => {
       
       // Show success message
       M.toast({ html: `${job.title} has been added to your cart!`, classes: 'rounded green' });
+    }
+  };
+
+  // Handler for Book Now (add to cart and redirect to checkout)
+  const handleBookNow = () => {
+    if (job) {
+      // Create a cart item from the job (same as in handleAddToCart)
+      const cartItem = {
+        id: job.id,
+        title: job.title,
+        company: job.company,
+        brand: job.brand,
+        price: job.price || 0,
+        logoUrl: job.logoUrl,
+        type: 'service',
+        quantity: 1
+      };
+      
+      // Add to cart
+      addToCart(cartItem);
+      
+      // Show brief success message before redirecting
+      M.toast({ html: `${job.title} has been added to your cart!`, classes: 'rounded green' });
+      
+      // Short timeout to allow toast to be visible before navigation
+      setTimeout(() => {
+        // Redirect to checkout page
+        navigate('/checkout');
+      }, 300);
     }
   };
 
@@ -77,9 +107,9 @@ const JobDetails = () => {
               </div>
               <div className="divider hide-on-med-and-down" style={{ margin: '2rem 0' }}></div>
               <div className='btn-wrapper'>
-                <Button href={`/collection/jobs/${job?.id}`} variant="link-secondary-outline">Inquiry</Button>
-                {/* Changed from href to handleClick for the Book Service button */}
-                <Button handleClick={handleAddToCart} variant="link-secondary">Book Now</Button>
+               {/*  <Button href={`/collection/jobs/${job?.id}`} variant="link-secondary-outline">Inquiry</Button>*/}
+                <Button handleClick={handleAddToCart} variant="link-secondary-outline">Add to Cart</Button>
+                <Button handleClick={handleBookNow} variant="link-secondary">Book Now</Button>
               </div>
               <div className="divider" style={{ margin: '2rem 0' }}></div>
               {job?.posttype && <p>Categories: <Link to={`/collection/${job?.posttype.toLowerCase()}`}><strong>{job?.posttype}</strong></Link></p>}
