@@ -200,7 +200,7 @@ const Checkout = () => {
       }, 1000);*/
       navigate('/')
        M.toast({ html: `Your Order has been  placed OrderId= ${data.orderId} `, classes: 'rounded green' });
-       M.toast({ html: data.orderId, classes: 'rounded' });
+       //M.toast({ html: data.orderId, classes: 'rounded' });
     } catch (error) {
       console.error('Order placement error:', error);
       setError(error.message || 'Something went wrong. Please try again.');
