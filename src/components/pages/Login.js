@@ -38,8 +38,8 @@ function Login() {
       const response = await orderApi.authenticate(username, password);
       const { id, name, accessToken } = response.data;
       const role = response.data.roles[0];
-      // const authdata = window.btoa(`${username}:${password}`);
-      const authenticatedUser = { id, name, role, accessToken };
+      const loginUserName = `${username}`;
+      const authenticatedUser = { id, name,loginUserName, role, accessToken };
       M.toast({ html: 'Login successful!', classes: 'green' });
       Auth.userLogin(authenticatedUser);
 

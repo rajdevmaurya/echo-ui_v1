@@ -58,7 +58,7 @@ function JobList({
     <React.Fragment>
       <div className={`${classes['cards-wrapper']} ${featured ? classes['featured-cards'] : ''}`}>
         {jobs.map((job) => {
-          return isAdmin && location.pathname === '/my-orders'
+          return location.pathname === '/my-orders'
             ?
             <OrderCard job={job} key={job.id} />
             :

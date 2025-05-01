@@ -23,7 +23,7 @@ const useJobs = (category) => {
   const location = useLocation();
   const extractedCategory = category || location.pathname.split("/").pop();
   const isAdmin = userIsAuthenticated && getUser()?.role === 'ADMIN';
-  //const userId = userIsAuthenticated && getUser()?.id;
+  
 
   const collectionCategories = navigationLinks
     .flatMap((link) => (link.dropdown ? link.dropdown.map((item) => item.path) : []))
@@ -83,11 +83,11 @@ const useJobs = (category) => {
     //const url = isAdmin ? `orders?page=${page}&size=${size}` : "orders/myorder/1";
     if(isAdmin){
     loadJobs(`orders?page=${page}&size=${size}`, page);
-  }//else{
-   // if(userId){
-    //loadJobs(`orders/myorder/${userId}?page=${page}&size=${size}`, page);
-   // }
-  //}
+  }else{
+    const storedUser = localStorage.getItem('user');
+    const userId = storedUser ? JSON.parse(storedUser).loginUserName : null;
+    loadJobs(`orders/myorder/${userId}`);
+  }
   }, [isAdmin, loadJobs]);
 
   const searchJob = useCallback((text, page = pageDefaultNumber, size = pageDefaultSize) => {
