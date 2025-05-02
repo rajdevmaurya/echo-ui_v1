@@ -5,7 +5,7 @@ import JobCard from './JobCard';
 import Pagination from '../UI/Pagination';
 import classes from './JobList.module.css';
 import { useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+//import { useAuth } from '../context/AuthContext';
 import OrderCard from './OrderCard';
 
 function JobList({
@@ -20,7 +20,7 @@ function JobList({
   const [selectedJob, setSelectedJob] = useState(null);
   const deleteModalRef = useRef(null);
   const location = useLocation();
-  const { getUser, userIsAuthenticated } = useAuth();
+ // const { getUser, userIsAuthenticated } = useAuth();
 
   //const isAdmin = userIsAuthenticated && getUser()?.role === 'ADMIN';
 
