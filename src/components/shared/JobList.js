@@ -22,7 +22,7 @@ function JobList({
   const location = useLocation();
   const { getUser, userIsAuthenticated } = useAuth();
 
-  const isAdmin = userIsAuthenticated && getUser()?.role === 'ADMIN';
+  //const isAdmin = userIsAuthenticated && getUser()?.role === 'ADMIN';
 
   useEffect(() => {
     if (deleteModalRef.current) {

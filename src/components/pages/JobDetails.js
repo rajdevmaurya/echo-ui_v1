@@ -145,8 +145,8 @@ const JobDetails = () => {
               </div>
               <div id="other">
                 <div className='pre-text'>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum nemo possimus deserunt voluptates quaerat ipsum quasi exercitationem, obcaecati veritatis corrupti molestias aperiam eligendi incidunt cumque? Culpa adipisci quidem in perferendis ab sint, tempore voluptates consequuntur nisi ipsa! Officiis quod ullam voluptatibus asperiores architecto dolorum atque repellendus sit sint nesciunt facilis maxime, quia id. Quod magnam libero, voluptatum, accusamus, sunt minima officia hic cupiditate praesentium optio odit adipisci a qui deserunt id architecto et ullam. Odio aliquid voluptatibus labore sequi voluptatem ut, recusandae dignissimos adipisci vel culpa, corporis dolore, placeat totam quam harum mollitia soluta! Dolore tempora officiis perspiciatis aliquid corrupti.
-                </div>
+                  comming soon...
+                 </div>
               </div>
             </div>
           </div>
