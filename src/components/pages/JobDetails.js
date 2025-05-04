@@ -6,6 +6,7 @@ import API from '../utils/api';
 import Button from '../UI/Button';
 import { Link } from "react-router-dom";
 import { useCart } from '../context/CartContext'; // Import the cart context
+import Accordion from '../pages/Accordion';
 
 const JobDetails = () => {
   const { job_id } = useParams(); // Access job_id from the URL
@@ -98,14 +99,14 @@ const JobDetails = () => {
     <div className="container job-details-wrapper">
       {job && (
         <div className='card' style={{ padding: '1rem' }}>
-          <div style={{ marginBottom: '1rem' }}>
+          {/*<div style={{ marginBottom: '1rem' }}>
             <Button variant='icon' handleClick={() => navigate(-1)}><i className='material-icons'>arrow_back</i> <span className='hide-on-med-and-down'>Go Back</span></Button>
-          </div>
+          </div>*/}
           <div className="common-img-header">
             <div><Logo logoUrl={job?.logoUrl} alt={job?.company} /></div>
             <div>
               <h2 style={{ fontSize: '20px', fontWeight: '500', marginTop: 0, color: 'inherit', marginBottom: '0.75rem' }}>{job?.title}</h2>
-              <p>Brand: <strong>{job?.brand} </strong>, Price: <strong>{job?.price}</strong>, Status: <strong>In stock</strong> </p>
+              <p>Brand: <strong>{job?.brand} </strong>, Price: <strong>{job?.price}</strong>, Status: <strong>In stock {job?.qty}</strong> </p>
               {/* <p><TimesAgo createDate={job?.createDate} /></p> */}
               <div className="divider" style={{ margin: '1rem 0' }}></div>
                <p></p>
@@ -122,18 +123,28 @@ const JobDetails = () => {
               <div className="divider" style={{ margin: '2rem 0' }}></div>
               {job?.posttype && <p>Categories: <Link to={`/collection/${job?.posttype.toLowerCase()}`}><strong>{job?.posttype}</strong></Link></p>}
               <p style={{ marginTop: '0.5rem' }}>Company: <strong>{job?.company}</strong></p>
+              <p style={{ marginTop: '1rem' }}><strong>Product Details</strong>
+              <Accordion
+                      items={[
+                        { title: 'Description', content: <div className="pre-text">{job?.description}</div> },
+                        { title: 'Composition', content: <div className="pre-text">Coming soon...</div> },
+                        { title: 'Key Specification & Dimensions', content: <div className="pre-text">Coming soon...</div> },
+                        { title: 'Direction to use', content: <div className="pre-text">Coming soon...</div> },
+                        { title: 'Safety Information', content: <div className="pre-text">Coming soon...</div> },
+                        { title: 'Warranty', content: <div className="pre-text">Coming soon...</div> },
+                        { title: 'FAQs', content: <div className="pre-text">Coming soon...</div> }
+                      ]}
+                    />
+              </p>
             </div>
           </div>
 
-          <div className="row" style={{ margin: '2rem 0 0' }}>
+          <div className="row">
             {/* tabs */}
             <ul className="tabs">
               <li className="tab col s2">
-                <a className="active" href="#description"><strong>Description</strong></a>
-              </li>
-              <li className="tab col s2">
-                <a href="#other"><strong>Service Details</strong></a>
-              </li>
+                <a className="active" href="#description"><strong>Similar Product</strong></a>
+              </li>  
             </ul>
 
             {/* tab content */}
@@ -143,11 +154,7 @@ const JobDetails = () => {
                   {job?.description}
                 </div>
               </div>
-              <div id="other">
-                <div className='pre-text'>
-                  comming soon...
-                 </div>
-              </div>
+               
             </div>
           </div>
         </div>

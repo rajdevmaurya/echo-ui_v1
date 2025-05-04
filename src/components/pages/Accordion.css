@@ -1,0 +1,31 @@
+.custom-accordion {
+    border-top: 1px solid #ddd;
+  }
+  
+  .accordion-item {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .accordion-header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    font-weight: 500;
+    background-color: #fff;
+  }
+  
+  .accordion-header:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .accordion-content {
+    padding: 1rem;
+    background-color: #fafafa;
+    font-size: 0.95rem;
+  }
+  
+  .arrow {
+    font-size: 0.9rem;
+  }
+  
