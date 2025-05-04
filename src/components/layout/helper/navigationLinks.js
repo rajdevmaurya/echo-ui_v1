@@ -3,6 +3,7 @@ const navigationLinks = [
     path: "/collection", label: "Medical Devices",
     roles: ["GUEST", "USER", "STAFF", "ADMIN"],
     dropdown: [
+      { path: "/collection/icu-equipments", label: "ICU Equipments" },
       { path: "/collection/lab-equipments", label: "Lab Equipments" },
       { path: "/collection/dental-equipments", label: "Dental Equipments" },
       { path: "/collection/x-ray", label: "X-Ray" },
