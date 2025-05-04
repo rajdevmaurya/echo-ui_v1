@@ -123,7 +123,7 @@ const JobDetails = () => {
               <div className="divider" style={{ margin: '2rem 0' }}></div>
               {job?.posttype && <p>Categories: <Link to={`/collection/${job?.posttype.toLowerCase()}`}><strong>{job?.posttype}</strong></Link></p>}
               <p style={{ marginTop: '0.5rem' }}>Company: <strong>{job?.company}</strong></p>
-              <p style={{ marginTop: '1rem' }}><strong>Product Details</strong>
+              <p style={{ marginTop: '1rem' }}><strong>Product Details</strong></p>
               <Accordion
                       items={[
                         { title: 'Description', content: <div className="pre-text">{job?.description}</div> },
@@ -135,7 +135,7 @@ const JobDetails = () => {
                         { title: 'FAQs', content: <div className="pre-text">Coming soon...</div> }
                       ]}
                     />
-              </p>
+              
             </div>
           </div>
 
